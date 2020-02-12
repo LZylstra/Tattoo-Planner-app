@@ -1,0 +1,29 @@
+.Header {
+  height: 60px;
+  display: flex;
+  align-items: normal;
+  justify-content: space-between;
+  background: black;
+}
+.Header h1 {
+  margin: 0;
+  padding-left: 100px;
+  padding-top: 10px;
+}
+
+.Header h1 a {
+  text-decoration: none;
+}
+
+.Header a {
+  color: #444;
+  padding-right: 100px;
+}
+@media screen and (min-width: 450px) {
+  .Header {
+    align-items: baseline;
+  }
+  .Header h1 {
+    font-size: 22pt;
+  }
+}

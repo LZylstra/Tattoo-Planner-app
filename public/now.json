@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "alias": "lindseyzylstra-tattoo-planner",
+  "name": "tattoo-planner-app",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
