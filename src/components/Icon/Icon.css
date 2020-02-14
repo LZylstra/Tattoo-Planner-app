@@ -1,6 +1,6 @@
 .box {
-  width: 150px;
   text-align: center;
+  padding-left: 20px;
 }
 
 .box h3 {
@@ -9,9 +9,14 @@
 
 .icon {
   display: inline-flex;
-  justify-content: space-evenly;
+  align-items: baseline;
+  align-content: stretch;
   margin: 0;
 }
 
+.icon p {
+  width: 250px;
+  text-align: center;
+}
 @media screen and (min-width: 450px) {
 }

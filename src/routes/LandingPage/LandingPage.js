@@ -2,23 +2,43 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import Icon from "../../components/Icon/Icon";
+import financialIcon from "../../img/financial-icon.png";
+import clientIcon from "../../img/client-icon.png";
+import tattooIcon from "../../img/tattoo-icon.png";
+import calendarIcon from "../../img/calendar-icon.png";
+import coverImg from "../../img/temporary-cover-img.png";
 
 function LandingPage() {
   return (
     <div className="landing_page">
       <p className="app_description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et
-        vehicula justo, id ullamcorper augue. Nam ornare sit amet tellus ac
-        mollis. Phasellus id sapien ipsum.
+        Tattoo Planner is a tattoo artists best friend and virtual assistant.
+        Artists work hard and Tattoo Planner is there to make things a little
+        easier. It helps them stay organized by giving them the ability to
+        create and view schedules as well as manage client and tattoo
+        information.
       </p>
-      <img
-        id="demo_pic"
-        src="https://via.placeholder.com/800x500"
-        alt="demo of app"
+      <img id="demo_pic" src={coverImg} alt="demo of app" />
+      <Icon
+        title="Financials"
+        description="Keep track of all of the money related information you need. Track quotes, hourly rates, deposits and more"
+        picture={financialIcon}
       />
-      <Icon title="Feature 1" />
-      <Icon title="Feature 2" />
-      <Icon title="Feature 3" />
+      <Icon
+        title="Clients"
+        description="Maintain a list of your clients and their information"
+        picture={clientIcon}
+      />
+      <Icon
+        title="Tattoos"
+        description="See all of the tattoos you have upcoming and past"
+        picture={tattooIcon}
+      />
+      <Icon
+        title="Calendar"
+        description="Schedule events such as consultations and tattooing sessions and view them in convenient calendar or schedule views"
+        picture={calendarIcon}
+      />
 
       <div className="demo_section">
         <Link className="tryit" to="/home">

@@ -18,8 +18,12 @@ body {
 }
 
 h1,
-h2,
-h3 {
+h2 {
   font-family: "Cinzel Decorative", cursive;
   color: #14ffec;
+}
+
+h3 {
+  color: #0d7377;
+  font-family: "Cinzel Decorative", cursive;
 }
