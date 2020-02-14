@@ -21,7 +21,7 @@ function LandingPage() {
       <Icon title="Feature 3" />
 
       <div className="demo_section">
-        <Link className="home_link" to="/home">
+        <Link className="tryit" to="/home">
           {" "}
           Try it out
         </Link>

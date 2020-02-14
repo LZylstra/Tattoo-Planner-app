@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Amiri|Cinzel+Decorative&display=swap");
 
 body {
-  background-color: #313131;
+  background-color: #212121;
   color: white;
 }
 
@@ -18,6 +18,8 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: "Cinzel Decorative", cursive;
+  color: #14ffec;
 }

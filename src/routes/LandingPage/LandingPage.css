@@ -26,6 +26,34 @@
   font-size: 110%;
   margin-top: 40px;
 }
+/* unvisited link */
+a:link {
+  color: #14ffec;
+}
 
+/* visited link */
+a:visited {
+  color: #14ffec;
+}
+
+/* mouse over link */
+a:hover {
+  color: #0d7377;
+}
+
+/* selected link */
+a:active {
+  color: #ca3e47;
+}
+
+.tryit {
+  position: relative;
+  padding: 5px;
+  top: 40%;
+  text-decoration: none;
+  border: 1px outset white;
+  border-radius: 20px;
+  background-color: #323232;
+}
 @media screen and (min-width: 450px) {
 }
