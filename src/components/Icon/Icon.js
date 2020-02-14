@@ -1,14 +1,14 @@
 import React from "react";
 import "./Icon.css";
 
-function Icon() {
+function Icon(props) {
   return (
-    <section className="icon">
+    <div className="icon">
       <div className="box">
         <img src="https://via.placeholder.com/100" alt="icon" />
-        <h3>Icon Name</h3>
+        <h3>{props.title}</h3>
       </div>
-    </section>
+    </div>
   );
 }
 

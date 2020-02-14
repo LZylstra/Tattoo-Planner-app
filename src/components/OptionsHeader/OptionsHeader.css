@@ -1,0 +1,20 @@
+.options-header {
+  background-color: #414141;
+  height: 100px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.options-header h2 {
+  padding: 0;
+  margin: 0;
+  margin-top: 26px;
+
+  height: 40px;
+}
+
+.options-header input {
+  height: 30px;
+  margin-top: 30px;
+}

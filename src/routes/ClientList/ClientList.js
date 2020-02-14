@@ -1,7 +1,12 @@
 import React from "react";
+import OptionsHeader from "../../components/OptionsHeader/OptionsHeader";
 
 function ClientList() {
-  return <div>Client List</div>;
+  return (
+    <div>
+      <OptionsHeader title="Clients" />
+    </div>
+  );
 }
 
 export default ClientList;

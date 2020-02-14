@@ -1,7 +1,12 @@
 import React from "react";
+import OptionsHeader from "../../components/OptionsHeader/OptionsHeader";
 
 function TattooList() {
-  return <div>Tattoo List</div>;
+  return (
+    <div>
+      <OptionsHeader title="Tattoos" />
+    </div>
+  );
 }
 
 export default TattooList;

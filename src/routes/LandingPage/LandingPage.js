@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import Icon from "../../components/Icon/Icon";
 
@@ -15,12 +16,15 @@ function LandingPage() {
         src="https://via.placeholder.com/800x500"
         alt="demo of app"
       />
-      <Icon />
-      <Icon />
-      <Icon />
+      <Icon title="Feature 1" />
+      <Icon title="Feature 2" />
+      <Icon title="Feature 3" />
 
       <div className="demo_section">
-        <button>Try it Out</button>
+        <Link className="home_link" to="/home">
+          {" "}
+          Try it out
+        </Link>
       </div>
     </div>
   );
