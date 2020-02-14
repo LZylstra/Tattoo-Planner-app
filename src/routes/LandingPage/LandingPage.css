@@ -1,10 +1,18 @@
+.landing_page {
+  text-align: center;
+}
 .app_description {
-  width: 100%;
-  margin: 15px;
+  width: 50%;
+  margin: auto;
+  display: block;
+  margin-top: 20px;
 }
 
 #demo_pic {
-  width: 100%;
+  max-width: 100%;
+  padding: 50px;
+  margin: auto;
+  display: block;
 }
 
 .demo_section {
@@ -16,6 +24,7 @@
   padding: 5px;
   width: 150px;
   font-size: 110%;
+  margin-top: 40px;
 }
 @media screen and (min-width: 450px) {
 }
