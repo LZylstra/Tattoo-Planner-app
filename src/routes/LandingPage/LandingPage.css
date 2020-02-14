@@ -1,0 +1,21 @@
+.app_description {
+  width: 100%;
+  margin: 15px;
+}
+
+#demo_pic {
+  width: 100%;
+}
+
+.demo_section {
+  background: black;
+  width: 100%;
+  height: 100px;
+}
+.demo_section button {
+  padding: 5px;
+  width: 150px;
+  font-size: 110%;
+}
+@media screen and (min-width: 450px) {
+}

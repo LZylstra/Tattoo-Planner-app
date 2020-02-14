@@ -1,0 +1,17 @@
+.box {
+  width: 150px;
+  text-align: center;
+}
+
+.box h3 {
+  margin: 0;
+}
+
+.icon {
+  display: inline-flex;
+  justify-content: space-evenly;
+  margin: 0;
+}
+
+@media screen and (min-width: 450px) {
+}

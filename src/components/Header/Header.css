@@ -21,8 +21,7 @@
   padding-right: 0.8em;
   padding-top: 1em;
 }
-.Header a {
-}
+
 @media screen and (min-width: 450px) {
   .Header {
     align-items: baseline;
