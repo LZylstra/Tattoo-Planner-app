@@ -9,7 +9,9 @@ export default class Header extends Component {
         <h1>
           <Link to="/"> Tattoo Planner </Link>
         </h1>
-        <a href="">Log Out</a>
+        <a className="links" href="">
+          Log Out
+        </a>
       </nav>
     );
   }
