@@ -1,5 +1,30 @@
 .tile {
-  width: 150px;
-  height: 150px;
-  background-color: #525252;
+  width: 255px;
+  height: 255px;
+  background-color: #0d7377;
+  text-align: center;
+  margin: 25px;
+  border: 5px solid #0d7377;
+  border-radius: 15px;
+  display: inline-flex;
+}
+
+.tile img {
+  padding: 0;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.tile h3,
+h4 {
+  padding: 0;
+  margin: 0;
+}
+
+.tile h4 {
+  color: #212121;
+}
+
+.tile h3 {
+  color: white;
 }
