@@ -1,0 +1,24 @@
+.row {
+  margin: auto;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.inner-row {
+  width: 800px;
+  display: inline-flex;
+  justify-content: space-between;
+  background-color: #0d7377;
+  border-radius: 25px;
+  margin: 10%;
+}
+
+.date {
+  width: 100%px;
+  background-color: #a3f7bf;
+  border-radius: 10px;
+}
+
+.inner-row h3 {
+  color: #dfcdc3;
+}

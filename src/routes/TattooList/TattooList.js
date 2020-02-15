@@ -1,6 +1,7 @@
 import React from "react";
 import OptionsHeader from "../../components/OptionsHeader/OptionsHeader";
 import Tile from "../../components/Tile/Tile";
+import "./TattooList.css";
 
 function TattooList() {
   return (
