@@ -1,3 +1,25 @@
 .home a {
   text-decoration: none;
 }
+
+.calendar-section {
+  background-color: #323232;
+  text-align: center;
+}
+
+.calendar-section img {
+  margin: 10px;
+  width: 90%;
+  max-width: 1090px;
+}
+
+.icon-row {
+  text-align: center;
+}
+
+@media screen and (min-width: 450px) {
+  .calendar-section img {
+    margin: 50px;
+    width: 80%;
+  }
+}
