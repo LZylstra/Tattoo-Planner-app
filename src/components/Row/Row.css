@@ -1,7 +1,7 @@
 .row {
-  margin: auto;
   display: inline-flex;
   justify-content: center;
+  width: 100%;
 }
 
 .inner-row {
@@ -9,8 +9,10 @@
   display: inline-flex;
   justify-content: space-between;
   background-color: #0d7377;
-  border-radius: 25px;
-  margin: 10%;
+  margin: 10px;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
 }
 
 .date {
@@ -21,4 +23,12 @@
 
 .inner-row h3 {
   color: #dfcdc3;
+}
+
+.row-text {
+  text-align: center;
+  margin: 0;
+  line-height: 120px;
+  display: inline-block;
+  vertical-align: middle;
 }

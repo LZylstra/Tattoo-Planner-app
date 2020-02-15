@@ -5,9 +5,10 @@ function Row(props) {
   return (
     <div className="row">
       <div className="inner-row">
-        <h3>{props.client}</h3>
-        <p>{props.tattoo}</p>
-        <p>{props.label}</p>
+        <img src="https://via.placeholder.com/100" alt="client" />
+        <h3 className="row-text">{props.client}</h3>
+        <p className="row-text">{props.tattoo}</p>
+        <p className="row-text">{props.label}</p>
         <p className="date">{props.date}</p>
       </div>
     </div>
