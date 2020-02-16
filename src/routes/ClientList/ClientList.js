@@ -16,6 +16,22 @@ function ClientList() {
           date="02/14/20"
         />
       </Link>
+      <Link to="/client">
+        <Row
+          client="Gabriel Bellamy"
+          tattoo="Dragon"
+          label="session scheduled"
+          date="03/01/20"
+        />
+      </Link>
+      <Link to="/client">
+        <Row
+          client="Janice Bigby"
+          tattoo="Dog Portrait"
+          label="session scheduled"
+          date="02/23/20"
+        />
+      </Link>
     </div>
   );
 }

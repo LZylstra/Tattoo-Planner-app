@@ -1,0 +1,90 @@
+.ClientPage h3,
+p {
+  text-align: center;
+}
+.ClientPage h3 {
+  margin: 0;
+}
+.client-header {
+  background-color: #414141;
+  height: 150px;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  position: absolute;
+  color: white;
+}
+
+.contact-info {
+  position: relative;
+  background-color: #393e46;
+  max-width: 350px;
+  padding: 20px;
+  margin: auto;
+  top: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contact-info p {
+  margin: 0;
+}
+
+.clients-tattoos {
+  margin-top: 100px;
+}
+
+.rate-area {
+  width: 200px;
+  margin: auto;
+  padding: 0;
+  border-style: none;
+}
+
+.rate-area:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+  clip: rect(0, 0, 0, 0);
+}
+
+.rate-area:not(:checked) > label {
+  float: right;
+  width: 1em;
+  padding: 0 0.1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 200%;
+  line-height: 1.2;
+  color: lightgrey;
+  text-shadow: 1px 1px #bbb;
+}
+
+.rate-area:not(:checked) > label:before {
+  content: "★ ";
+}
+
+.rate-area > input:checked ~ label {
+  color: gold;
+  text-shadow: 1px 1px #c60;
+  font-size: 200% !important;
+}
+
+.rate-area:not(:checked) > label:hover,
+.rate-area:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+
+.rate-area > input:checked + label:hover,
+.rate-area > input:checked + label:hover ~ label,
+.rate-area > input:checked ~ label:hover,
+.rate-area > input:checked ~ label:hover ~ label,
+.rate-area > label:hover ~ input:checked ~ label {
+  color: gold;
+  text-shadow: 1px 1px goldenrod;
+}
+
+.rate-area > label:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}

@@ -16,9 +16,13 @@
 }
 
 .date {
-  width: 100%px;
+  height: 30px;
   background-color: #a3f7bf;
   border-radius: 10px;
+  text-align: center;
+}
+.date-box {
+  height: 40px;
 }
 
 .inner-row h3 {

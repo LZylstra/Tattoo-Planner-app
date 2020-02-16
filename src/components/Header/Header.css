@@ -24,6 +24,15 @@
 .menu-item {
   padding: 10px;
 }
+
+.menu-icon {
+  padding-top: 10px;
+  margin: 10px;
+}
+
+.Header_loggedIn {
+  padding-top: 10px;
+}
 @media screen and (min-width: 450px) {
   .Header {
     justify-content: space-around;
@@ -32,7 +41,6 @@
     font-size: 22pt;
   }
   .Header a {
-    padding-top: 0;
     padding-bottom: 10px;
   }
   .links {

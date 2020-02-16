@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import financialIcon from "../../img/financial-icon.png";
+import clientIcon from "../../img/client-icon.png";
+import tattooIcon from "../../img/tattoo-icon.png";
+import calendarIcon from "../../img/calendar-icon.png";
 import TokenService from "../../services/token-service";
 import "./Header.css";
 
@@ -9,9 +13,21 @@ export default class Header extends Component {
   };
 
   renderLogoutLink() {
-    console.log("render logged in");
+    // console.log("render logged in");
     return (
       <div className="Header_logged-in">
+        <Link className="menu-icon" to="/client-list">
+          <img src={clientIcon} alt="clients" width="40" />
+        </Link>
+        <Link className="menu-icon" to="/ledger">
+          <img src={financialIcon} alt="ledger" width="40" />
+        </Link>
+        <Link className="menu-icon" to="/tattoo-list">
+          <img src={tattooIcon} alt="tattoos" width="40" />
+        </Link>
+        {/* <Link className="menu-icon" to="/home">
+          <img src={calendarIcon} alt="tattoos" width="40" />
+        </Link> */}
         <Link onClick={this.handleLogoutClick} to="/">
           Logout
         </Link>
@@ -20,7 +36,7 @@ export default class Header extends Component {
   }
 
   renderLoginLink() {
-    console.log(" render logged out");
+    //  console.log(" render logged out");
     return (
       <div className="Header_not-logged-in">
         <Link className="menu-item" to="/register">

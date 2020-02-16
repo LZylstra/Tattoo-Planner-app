@@ -16,6 +16,16 @@ import Registration from "../../routes/Registration/Registration";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    hasError: false,
+    isLoggedIn: false
+  };
+
+  static getDerivedStateFromError(error) {
+    console.error(error);
+    return { hasError: true };
+  }
+
   render() {
     return (
       <main className="App">
@@ -24,6 +34,7 @@ class App extends Component {
             <Header />
           </header>
           <main className="App_main">
+            {this.state.hasError && <p className="red">There was an error!</p>}
             <Switch>
               <Route exact path={"/"} component={LandingPage} />
               <PublicOnlyRoute path={"/login"} component={Login} />

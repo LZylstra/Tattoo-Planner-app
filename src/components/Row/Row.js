@@ -9,7 +9,9 @@ function Row(props) {
         <h3 className="row-text">{props.client}</h3>
         <p className="row-text">{props.tattoo}</p>
         <p className="row-text">{props.label}</p>
-        <p className="date">{props.date}</p>
+        <div className="date-box">
+          <p className="date">{props.date}</p>
+        </div>
       </div>
     </div>
   );
