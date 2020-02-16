@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button, Input } from "../../utils/utils";
 import TokenService from "../../services/token-service";
+import { Button, Input } from "../../utils/utils";
 import AuthApiService from "../../services/auth-api-service";
 
 export default class LoginForm extends Component {
@@ -22,6 +22,7 @@ export default class LoginForm extends Component {
     password.value = "";
     this.props.onLoginSuccess();
   };
+
   handleSubmitJwtAuth = ev => {
     ev.preventDefault();
     this.setState({ error: null });

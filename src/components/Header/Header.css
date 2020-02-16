@@ -21,14 +21,9 @@
   padding-right: 0.8em;
   padding-top: 1em;
 }
-.Header_not-logged-in {
-  margin: 20px;
+.menu-item {
+  padding: 10px;
 }
-
-.Header_logged-in {
-  padding: 20px;
-}
-
 @media screen and (min-width: 450px) {
   .Header {
     justify-content: space-around;
