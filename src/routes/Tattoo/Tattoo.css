@@ -1,0 +1,154 @@
+.tattoo-desc {
+  max-width: 380px;
+  text-align: left;
+  margin-left: 2%;
+}
+
+.tattoo-info {
+  background-color: #393e46;
+  margin: 0;
+  height: 450px;
+  max-width: 700px;
+}
+.tattoo-info h2 {
+  padding-top: 40px;
+  margin-top: 0;
+  margin-left: 18%;
+  width: 150px;
+  font-size: 110%;
+}
+.details {
+  width: 250px;
+  margin-left: 8%;
+  margin-top: 0;
+}
+.client-contact {
+  display: inline-block;
+  text-align: center;
+  background-color: #0d7377;
+  width: 100%;
+}
+.client-ledger {
+  background-color: #29a19c;
+  width: 100%;
+  display: inline-block;
+}
+
+.next-date {
+  width: 100%;
+  background-color: white;
+  color: #222831;
+  padding: 10px;
+  margin: auto;
+}
+
+.references {
+  width: 100%;
+  margin-top: 70px;
+  text-align: center;
+}
+
+.rate-area-t {
+  display: inline-block;
+  padding: 0;
+  border-style: none;
+  width: 250px;
+  margin-left: 8%;
+}
+
+.rate-area-t:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+  clip: rect(0, 0, 0, 0);
+}
+
+.rate-area-t:not(:checked) > label {
+  float: right;
+  width: 1.2em;
+  padding: 0 0.1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 200%;
+  line-height: 1.2;
+  color: lightgrey;
+  text-shadow: 1px 1px #bbb;
+}
+
+.rate-area-t:not(:checked) > label:before {
+  content: " ❤ ";
+}
+
+.rate-area-t > input:checked ~ label {
+  color: #14ffec;
+  text-shadow: 1px 1px #0d7377;
+  font-size: 200% !important;
+}
+
+.rate-area-t:not(:checked) > label:hover,
+.rate-area-t:not(:checked) > label:hover ~ label {
+  color: #14ffec;
+}
+
+.rate-area-t > input:checked + label:hover,
+.rate-area-t > input:checked + label:hover ~ label,
+.rate-area-t > input:checked ~ label:hover,
+.rate-area-t > input:checked ~ label:hover ~ label,
+.rate-area-t > label:hover ~ input:checked ~ label {
+  color: #14ffec;
+  text-shadow: 1px 1px #0d7377;
+}
+
+.rate-area-t > label:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+@media screen and (min-width: 600px) {
+  .client-contact {
+    position: relative;
+    left: 380px;
+    bottom: 380px;
+    width: 250px;
+    padding: 5px;
+  }
+  .client-ledger {
+    position: relative;
+    bottom: 120px;
+    left: 130px;
+    width: 250px;
+    padding: 5px;
+  }
+  .tattoo-info {
+    margin: auto;
+  }
+  .tattoo-desc {
+    margin-left: 4%;
+  }
+
+  .next-date {
+    position: relative;
+    max-width: 200px;
+    margin: auto;
+    bottom: 109px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+@media screen and (min-width: 830px) {
+  .client-contact {
+    left: 500px;
+    bottom: 350px;
+  }
+  .client-ledger {
+    left: 250px;
+    bottom: 120px;
+  }
+  .tattoo-desc {
+    margin-left: 8%;
+  }
+  .next-date {
+    bottom: 200px;
+  }
+}

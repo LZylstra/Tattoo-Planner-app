@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Tile from "../../components/Tile/Tile";
 import "./Client.css";
 
@@ -36,7 +37,9 @@ function Client(props) {
         <p>Email: email@email.com</p>{" "}
       </div>
       <div className="clients-tattoos">
-        <Tile line1="Butterfly" line2="Planning" />
+        <Link to="/tattoo">
+          <Tile line1="Butterfly" line2="Planning" />
+        </Link>
         <Tile line1="Sunflower" line2="Completed" />
         <Tile line1="Live Laugh Love" line2="Completed" />
       </div>
