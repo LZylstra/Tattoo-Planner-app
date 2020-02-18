@@ -1,10 +1,12 @@
 import React from "react";
 import "./Ledger.css";
+import DataTile from "../../components/DataTile/DataTile";
 
 function Ledger() {
   return (
     <div className="ledger">
-      <p>This feature coming soon</p>
+      <DataTile title="Total Tips Earned this year" total="$400" />
+      <DataTile title="Total Earned this year" total="$3480" />
     </div>
   );
 }
