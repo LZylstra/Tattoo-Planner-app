@@ -1,21 +1,51 @@
 .row {
-  display: inline-flex;
-  justify-content: center;
+  display: flex;
+  justify-content: space-around;
   width: 100%;
 }
 
+.inner-row img {
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.inner-row h3 {
+  padding-top: 5px;
+  margin: 0;
+}
+.inner-row p {
+  width: 90%;
+  display: inline;
+  padding: 5px;
+}
+
+.inner-row::after {
+  content: "___________________________________";
+  color: #a3f7bf;
+}
+
+.row-text-item {
+  display: flex;
+}
+
+.row-text {
+  display: inline;
+}
+/*
 .inner-row {
-  width: 800px;
-  display: inline-flex;
-  justify-content: space-between;
+  display: flex;
   background-color: #0d7377;
   margin: 10px;
   border-radius: 15px;
   padding: 10px;
-  text-align: center;
+  width: 80%;
 }
-
+.inner-row img {
+  margin-right: 10px;
+}
 .date {
+  display: inline;
   height: 30px;
   background-color: #a3f7bf;
   border-radius: 10px;
@@ -32,7 +62,29 @@
 .row-text {
   text-align: center;
   margin: 0;
-  line-height: 120px;
-  display: inline-block;
-  vertical-align: middle;
+  margin-bottom: 5px;
+  height: 40px;
+  display: flex;
+}
+.row-text h3,
+p {
+  width: 200px;
+  margin: 0;
+} */
+@media screen and (min-width: 530px) {
+  .inner-row {
+    width: 90%;
+    display: inline-flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+  .row-text {
+    padding-top: 25px;
+  }
+  .inner-row::after {
+    display: none;
+  }
+  .date-box {
+    padding-top: 30px;
+  }
 }
