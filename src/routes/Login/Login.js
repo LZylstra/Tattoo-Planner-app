@@ -11,11 +11,10 @@ export default class Login extends Component {
   };
 
   handleLoginSuccess = () => {
-    console.log("handleloginsuccess");
     const { location, history } = this.props;
     const destination = (location.state || {}).from || "/home";
-    console.log(destination);
     history.push(destination);
+    // this.props.updateLogin(true);
   };
 
   render() {

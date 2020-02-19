@@ -3,17 +3,30 @@ import { Link } from "react-router-dom";
 import financialIcon from "../../img/financial-icon.png";
 import clientIcon from "../../img/client-icon.png";
 import tattooIcon from "../../img/tattoo-icon.png";
-import calendarIcon from "../../img/calendar-icon.png";
+//import calendarIcon from "../../img/calendar-icon.png";
 import TokenService from "../../services/token-service";
 import "./Header.css";
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggedIn: false //this.props.isLoggedIn
+    };
+  }
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
+    // this.props.updateLogin(false);
+    this.setState({ isLoggedIn: false });
+  };
+
+  updateLoggedIn = LoggedIn => {
+    this.setState({ isLoggedIn: LoggedIn });
   };
 
   renderLogoutLink() {
-    // console.log("render logged in");
+    console.log("render logged in");
     return (
       <div className="Header_logged-in">
         <Link className="menu-icon" to="/client-list">
@@ -36,7 +49,8 @@ export default class Header extends Component {
   }
 
   renderLoginLink() {
-    //  console.log(" render logged out");
+    console.log(" render logged out");
+
     return (
       <div className="Header_not-logged-in">
         <Link className="menu-item" to="/register">
@@ -49,15 +63,27 @@ export default class Header extends Component {
     );
   }
 
+  checkLoggedIn() {
+    // console.log("it ran");
+    if (TokenService.hasAuthToken()) {
+      console.log("auth serv is logged in");
+      return this.setState({ isLoggedIn: true });
+    } else {
+      console.log("auth serv not logged in");
+      return this.setState({ isLoggedIn: false });
+    }
+  }
+  // componentDidUpdate() {
+  //   this.checkLoggedIn();
+  // }
   render() {
+    let { isLoggedIn } = this.state;
     return (
       <nav className="Header">
         <h1>
           <Link to="/"> Tattoo Planner </Link>
         </h1>
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
+        {isLoggedIn ? this.renderLogoutLink() : this.renderLoginLink()}
       </nav>
     );
   }

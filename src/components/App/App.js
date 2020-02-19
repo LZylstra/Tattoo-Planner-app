@@ -16,16 +16,26 @@ import Registration from "../../routes/Registration/Registration";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    hasError: false,
-    isLoggedIn: false
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasError: false,
+      isLoggedIn: false
+    };
+  }
 
   static getDerivedStateFromError(error) {
     console.error(error);
     return { hasError: true };
   }
 
+  updateLogin = loggedIn => {
+    this.setState({
+      isLoggedIn: loggedIn
+    });
+  };
+  
   render() {
     return (
       <main className="App">
@@ -38,6 +48,12 @@ class App extends Component {
             <Switch>
               <Route exact path={"/"} component={LandingPage} />
               <PublicOnlyRoute path={"/login"} component={Login} />
+              {/* <PublicOnlyRoute
+                path={"/login"}
+                render={props => (
+                  <Login {...props} updateLogin={this.updateLogin} />
+                )}
+              /> */}
               <PublicOnlyRoute path={"/register"} component={Registration} />
               <PrivateRoute exact path={"/home"} component={UserHome} />
               <PrivateRoute
