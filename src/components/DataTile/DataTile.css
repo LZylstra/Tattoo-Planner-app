@@ -1,0 +1,16 @@
+.data-tile {
+  font-size: 60%;
+  display: inline-flex;
+}
+.data-tile-box {
+  width: 200px;
+  background-color: #323232;
+  margin: 15px;
+  height: 200px;
+}
+
+.data-tile-box h3,
+p {
+  margin: 0;
+  padding: 10px;
+}

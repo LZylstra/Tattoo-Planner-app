@@ -16,10 +16,51 @@
 .icon-row {
   text-align: center;
 }
+/* Calendar Styling */
+.calendar {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.fc-unthemed td.fc-today {
+  opacity: 0.2;
+}
+
+.fc-content {
+  font-size: 80%;
+}
+.fc-event,
+.fc-event-dot {
+  border: 1px outset #14ffec !important;
+  background-color: #0d7377 !important;
+}
+
+.fc-toolbar.fc-header-toolbar {
+  flex-wrap: wrap;
+  text-align: center;
+  margin: auto;
+  width: 200px;
+}
+
+.fc-list-heading td {
+  background-color: #0d7377 !important;
+}
+.fc-view-container * {
+  padding-right: 5px;
+}
 
 @media screen and (min-width: 450px) {
   .calendar-section img {
     margin: 50px;
     width: 80%;
+  }
+}
+@media screen and (min-width: 720px) {
+  .fc-toolbar.fc-header-toolbar {
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
   }
 }
