@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Tile from "../../components/Tile/Tile";
+import CircleButton from "../../components/CircleButton/CircleButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Client.css";
 
 function Client(props) {
@@ -42,6 +44,18 @@ function Client(props) {
         </Link>
         <Tile line1="Sunflower" line2="Completed" />
         <Tile line1="Live Laugh Love" line2="Completed" />
+      </div>
+      <div className="Client_button-container">
+        <CircleButton
+          tag={Link}
+          to="/add-tattoo"
+          type="button"
+          className="Client__add-tattoo-button"
+        >
+          <FontAwesomeIcon icon="plus" />
+          <br />
+          Tattoo
+        </CircleButton>
       </div>
     </div>
   );

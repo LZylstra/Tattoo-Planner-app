@@ -11,6 +11,8 @@ import Ledger from "../../routes/Ledger/Ledger";
 import Header from "../Header/Header";
 import PrivateRoute from "../../utils/PrivateRoute";
 import PublicOnlyRoute from "../../utils/PublicOnlyRoute";
+import ClientForm from "../../components/ClientForm/ClientForm";
+import TattooForm from "../../components/TattooForm/TattooFrom";
 import Login from "../../routes/Login/Login";
 import Registration from "../../routes/Registration/Registration";
 import "./App.css";
@@ -35,7 +37,7 @@ class App extends Component {
       isLoggedIn: loggedIn
     });
   };
-  
+
   render() {
     return (
       <main className="App">
@@ -47,14 +49,18 @@ class App extends Component {
             {this.state.hasError && <p className="red">There was an error!</p>}
             <Switch>
               <Route exact path={"/"} component={LandingPage} />
-              <PublicOnlyRoute path={"/login"} component={Login} />
+              <PublicOnlyRoute exact path={"/login"} component={Login} />
               {/* <PublicOnlyRoute
                 path={"/login"}
                 render={props => (
                   <Login {...props} updateLogin={this.updateLogin} />
                 )}
               /> */}
-              <PublicOnlyRoute path={"/register"} component={Registration} />
+              <PublicOnlyRoute
+                exact
+                path={"/register"}
+                component={Registration}
+              />
               <PrivateRoute exact path={"/home"} component={UserHome} />
               <PrivateRoute
                 exact
@@ -62,12 +68,14 @@ class App extends Component {
                 component={TattooList}
               />
               <PrivateRoute exact path={"/tattoo"} component={Tattoo} />
+              <PrivateRoute exact path={"/add-tattoo"} component={TattooForm} />
               <PrivateRoute
                 exact
                 path={"/client-list"}
                 component={ClientList}
               />
               <PrivateRoute exact path={"/client"} component={Client} />
+              <PrivateRoute exact path={"/add-client"} component={ClientForm} />
               <PrivateRoute exact path={"/ledger"} component={Ledger} />
               <Route component={PageNotFound} />
             </Switch>

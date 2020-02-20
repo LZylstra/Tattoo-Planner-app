@@ -20,7 +20,10 @@ export default class Header extends Component {
     // this.props.updateLogin(false);
     this.setState({ isLoggedIn: false });
   };
-
+  handleLoginClick = () => {
+    console.log("handle loginclick");
+    this.setState({ isLoggedIn: true });
+  };
   updateLoggedIn = LoggedIn => {
     this.setState({ isLoggedIn: LoggedIn });
   };
@@ -56,7 +59,7 @@ export default class Header extends Component {
         <Link className="menu-item" to="/register">
           Register
         </Link>
-        <Link className="menu-item" to="/login">
+        <Link onClick={this.handleLoginClick} className="menu-item" to="/login">
           Log in
         </Link>
       </div>

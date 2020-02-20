@@ -2,12 +2,14 @@ import React from "react";
 import OptionsHeader from "../../components/OptionsHeader/OptionsHeader";
 import Tile from "../../components/Tile/Tile";
 import "./TattooList.css";
+import CircleButton from "../../components/CircleButton/CircleButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 function TattooList() {
   return (
     <div className="tattoo-list">
-      <OptionsHeader title="Tattoos" />
+      <OptionsHeader title="Tattoos" type="Tattoo" />
       <Link to="/tattoo">
         <Tile line1="Butterfly" line2="Sarah Smith" />
       </Link>
@@ -26,6 +28,18 @@ function TattooList() {
       <Link to="/tattoo">
         <Tile line1="Tree" line2="Arthur Hays" />
       </Link>
+      <div className="tattooList_button-container">
+        <CircleButton
+          tag={Link}
+          to="/add-tattoo"
+          type="button"
+          className="tattooList_add-tattoo-button"
+        >
+          <FontAwesomeIcon icon="plus" />
+          <br />
+          Tattoo
+        </CircleButton>
+      </div>
     </div>
   );
 }

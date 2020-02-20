@@ -1,4 +1,9 @@
-.client-list a {
+.row-link {
   text-decoration: none;
   color: white;
+}
+
+.ClientList_button-container {
+  margin: auto;
+  width: 90px;
 }

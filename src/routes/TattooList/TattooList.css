@@ -1,3 +1,7 @@
 .tattoo-list a {
   text-decoration: none;
 }
+.tattooList_button-container {
+  margin: auto;
+  width: 90px;
+}
