@@ -13,6 +13,7 @@ p {
   padding: 20px;
   position: absolute;
   color: white;
+  text-align: center;
 }
 
 .contact-info {
@@ -33,6 +34,9 @@ p {
 
 .clients-tattoos {
   margin-top: 100px;
+}
+.ClientStarRating {
+  display: inline;
 }
 
 .rate-area {

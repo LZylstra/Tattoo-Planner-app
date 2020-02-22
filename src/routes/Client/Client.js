@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Tile from "../../components/Tile/Tile";
+import { ClientStarRating } from "../../components/ClientStarRating/ClientStarRating";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import ClientContext from "../../contexts/ClientContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,12 +30,12 @@ class Client extends Component {
   }
   renderClient() {
     const { client, tattoos } = this.context;
-    console.log(this.context);
+    // console.log(client.client_rating);
     return (
       <>
         <div className="client-header">
           <h3>{client.full_name}</h3>
-          <p>{client.client_rating}</p>
+          <ClientStarRating rating={client.client_rating} />
         </div>
         <div className="contact-info">
           {" "}
