@@ -72,7 +72,7 @@ class UserHome extends Component {
           </div>
         </div>
         <div className="icon-row">
-          <Link to="/client-list">
+          <Link to="/clients">
             <Icon title="Clients" picture={clientIcon} />
           </Link>
           <Link to="/ledger">

@@ -7,3 +7,7 @@
   margin: auto;
   width: 90px;
 }
+
+.client-list a {
+  text-decoration: none;
+}
