@@ -4,7 +4,8 @@ import "./Tile.css";
 class Tile extends Component {
   render() {
     const { tattoo } = this.props;
-    console.log(tattoo);
+
+    //console.log(tattoo);
     return (
       <div className="tile">
         <div className="inner">

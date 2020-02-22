@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 
 export const nullClient = {
-  clients: {},
-  tattoos: []
+  clients: {}
+};
+
+export const nullTattoo = {
+  tattoos: {}
 };
 
 const ClientContext = React.createContext({
   client: nullClient,
-  tattoos: [],
+  tattoos: nullTattoo,
   error: null,
   setError: () => {},
   clearError: () => {},
@@ -22,7 +25,7 @@ export default ClientContext;
 export class ClientProvider extends Component {
   state = {
     client: nullClient,
-    tattoos: null,
+    tattoos: nullTattoo,
     error: null
   };
 
@@ -44,8 +47,9 @@ export class ClientProvider extends Component {
   };
 
   setClientTattoos = tattoo => {
-    // console.log({ tattoo });
+    //console.log({ tattoo });
     this.setState({ tattoo });
+    //  console.log(this.state.tattoo);
   };
 
   addClientTattoo = tattoo => {
@@ -53,9 +57,9 @@ export class ClientProvider extends Component {
   };
 
   render() {
-    const value = {
+    const valueData = {
       client: this.state.client,
-      tattoos: this.state.tattoos,
+      tattoos: this.state.tattoo,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
@@ -65,7 +69,7 @@ export class ClientProvider extends Component {
       addClientTattoo: this.addClientTattoo
     };
     return (
-      <ClientContext.Provider value={value}>
+      <ClientContext.Provider value={valueData}>
         {this.props.children}
       </ClientContext.Provider>
     );

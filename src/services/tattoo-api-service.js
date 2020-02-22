@@ -1,9 +1,9 @@
 import TokenService from "../services/token-service";
 import config from "../config";
 
-const ClientApiService = {
-  getClients() {
-    return fetch(`${config.API_ENDPOINT}/clients`, {
+const TattooApiService = {
+  getTattoos() {
+    return fetch(`${config.API_ENDPOINT}/tattoos`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
@@ -18,8 +18,8 @@ const ClientApiService = {
       //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
-  getClient(clientId) {
-    return fetch(`${config.API_ENDPOINT}/clients/${clientId}`, {
+  getTattoo(tattooId) {
+    return fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}`, {
       headers: { authorization: `bearer ${TokenService.getAuthToken()}` }
     }).then(
       res => {
@@ -33,7 +33,7 @@ const ClientApiService = {
     );
   },
   getClientTattoos(clientId) {
-    return fetch(`${config.API_ENDPOINT}/clients/${clientId}/tattoos`, {
+    return fetch(`${config.API_ENDPOINT}/tattoos/client/${clientId}`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
@@ -44,24 +44,24 @@ const ClientApiService = {
       //console.log(res.json());
       return res.json();
     });
-  },
-  postClient(full_name, phone, email, client_rating) {
-    return fetch(`${config.API_ENDPOINT}/clients`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${TokenService.getAuthToken()}`
-      },
-      body: JSON.stringify({
-        full_name: full_name,
-        phone: phone,
-        email: email,
-        client_rating: client_rating
-      })
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
   }
+  //   postClient(full_name, phone, email, client_rating) {
+  //     return fetch(`${config.API_ENDPOINT}/clients`, {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //         authorization: `bearer ${TokenService.getAuthToken()}`
+  //       },
+  //       body: JSON.stringify({
+  //         full_name: full_name,
+  //         phone: phone,
+  //         email: email,
+  //         client_rating: client_rating
+  //       })
+  //     }).then(res =>
+  //       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+  //     );
+  //   }
 };
 
-export default ClientApiService;
+export default TattooApiService;

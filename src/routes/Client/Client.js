@@ -12,6 +12,7 @@ class Client extends Component {
   static defaultProps = {
     match: { params: {} }
   };
+
   static contextType = ClientContext;
 
   componentDidMount() {
@@ -30,7 +31,7 @@ class Client extends Component {
   }
   renderClient() {
     const { client, tattoos } = this.context;
-    // console.log(client.client_rating);
+    // console.log(tattoos);
     return (
       <>
         <div className="client-header">
@@ -43,18 +44,17 @@ class Client extends Component {
           <p>Email: {client.email}</p>{" "}
         </div>
         <div className="clients-tattoos">
-          <Link to="/tattoo/:id">
-            {/* <Tile key={client.id} tattoo={tattoo} /> */}
-          </Link>
-          {/* <Tile line1="Sunflower" line2="Completed" />
-          <Tile line1="Live Laugh Love" line2="Completed" /> */}
+          {tattoos.map(tattoo => (
+            <Tile key={tattoo.id} tattoo={tattoo} type="tattoo" />
+          ))}
         </div>
       </>
     );
   }
 
   render() {
-    const { error, client } = this.context;
+    const { error, client, tattoos } = this.context;
+    //  console.log(this.context);
     let content;
     if (error) {
       content =
@@ -63,7 +63,8 @@ class Client extends Component {
         ) : (
           <p className="red">There was an error</p>
         );
-    } else if (!client.id) {
+    } else if (!client.id || tattoos === undefined) {
+      //console.log(`clientid ${client.id} and tattooid ${tattoos.id}`);
       content = <div className="loading" />;
     } else {
       content = this.renderClient();
@@ -72,43 +73,7 @@ class Client extends Component {
     return (
       <div className="ClientPage">
         {content}
-        {/* <div className="client-header">
-          <h3>Sarah Smith</h3>
-          <ul class="rate-area">
-            <input type="radio" id="5-star" name="rating" value="5" />
-            <label for="5-star" title="Amazing">
-              5 stars
-            </label>
-            <input type="radio" id="4-star" name="rating" value="4" />
-            <label for="4-star" title="Good">
-              4 stars
-            </label>
-            <input type="radio" id="3-star" name="rating" value="3" />
-            <label for="3-star" title="Average">
-              3 stars
-            </label>
-            <input type="radio" id="2-star" name="rating" value="2" />
-            <label for="2-star" title="Not Good">
-              2 stars
-            </label>
-            <input type="radio" id="1-star" name="rating" value="1" />
-            <label for="1-star" title="Bad">
-              1 star
-            </label>
-          </ul>
-        </div>
-        <div className="contact-info">
-          {" "}
-          <p>Phone: 123-456-7890</p>
-          <p>Email: email@email.com</p>{" "}
-        </div>
-        <div className="clients-tattoos">
-          <Link to="/tattoo">
-            <Tile line1="Butterfly" line2="Planning" />
-          </Link>
-          <Tile line1="Sunflower" line2="Completed" />
-          <Tile line1="Live Laugh Love" line2="Completed" />
-        </div> */}
+
         <div className="Client_button-container">
           <CircleButton
             tag={Link}
