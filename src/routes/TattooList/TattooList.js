@@ -14,21 +14,26 @@ class TattooList extends Component {
   componentDidMount() {
     this.context.clearError();
     TattooApiService.getTattoos()
-      .then(this.context.setTattoosList)
+      .then(this.context.setTattooList)
       .catch(this.context.setError);
   }
 
   renderTattoos() {
     const { tattooList = [] } = this.context;
-    // return tattooList.map(tattoo =>
-    //   //<Tile key={} line2="Sarah Smith" />
-    //   )
+    //console.log(tattooList);
+    return tattooList.map(tattoo => <Tile key={tattoo.id} tattoo={tattoo} />);
   }
 
   render() {
+    const { error } = this.context;
     return (
       <div className="tattoo-list">
         <OptionsHeader title="Tattoos" type="Tattoo" />
+        {error ? (
+          <p className="red">There was an error, try again</p>
+        ) : (
+          this.renderTattoos()
+        )}
         {/* <Link to="/tattoo">
           <Tile line1="Butterfly" line2="Sarah Smith" />
         </Link>

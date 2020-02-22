@@ -5,7 +5,7 @@ class Tile extends Component {
   render() {
     const { tattoo } = this.props;
 
-    //console.log(tattoo);
+    // console.log(`goes into tile ${tattoo}`);
     return (
       <div className="tile">
         <div className="inner">

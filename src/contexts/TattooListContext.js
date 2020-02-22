@@ -16,8 +16,8 @@ export class TattooListProvider extends Component {
   };
 
   setTattooList = tattooList => {
-    // console.log({ tattooList });
     this.setState({ tattooList });
+    // console.log(`goes into setTattooList ${this.state.tattooList}`);
   };
 
   setError = error => {
@@ -30,7 +30,9 @@ export class TattooListProvider extends Component {
   };
 
   render() {
-    const value = {
+    // console.log("goes in context render");
+    // console.log(this.state);
+    const valueData = {
       tattooList: this.state.tattooList,
       error: this.state.error,
       setError: this.setError,
@@ -38,7 +40,7 @@ export class TattooListProvider extends Component {
       setTattooList: this.setTattooList
     };
     return (
-      <TattooListContext.Provider value={value}>
+      <TattooListContext.Provider value={valueData}>
         {this.props.children}
       </TattooListContext.Provider>
     );

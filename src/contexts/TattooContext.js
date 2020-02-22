@@ -5,7 +5,7 @@ export const nullTattoo = {
 };
 
 const TattooContext = React.createContext({
-  client: nullTattoo,
+  tattoos: nullTattoo,
   error: null,
   setError: () => {},
   clearError: () => {},
@@ -51,7 +51,7 @@ export class TattoosProvider extends Component {
   //   };
 
   render() {
-    const value = {
+    const valueData = {
       tattoos: this.state.tattoos,
       error: this.state.error,
       setError: this.setError,
@@ -60,7 +60,7 @@ export class TattoosProvider extends Component {
       clearTattoo: this.clearTattoo
     };
     return (
-      <TattooContext.Provider value={value}>
+      <TattooContext.Provider value={valueData}>
         {this.props.children}
       </TattooContext.Provider>
     );

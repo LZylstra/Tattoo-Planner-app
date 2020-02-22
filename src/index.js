@@ -7,6 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App";
 import { ClientProvider } from "./contexts/ClientContext";
 import { ClientListProvider } from "./contexts/ClientListContext";
+import { TattooListProvider } from "./contexts/TattooListContext";
+import { TattoosProvider } from "./contexts/TattooContext";
 import "./index.css";
 
 library.add(faPlus, farStar, fasStar);
@@ -15,7 +17,11 @@ ReactDOM.render(
   <BrowserRouter>
     <ClientListProvider>
       <ClientProvider>
-        <App />
+        <TattooListProvider>
+          <TattoosProvider>
+            <App />
+          </TattoosProvider>
+        </TattooListProvider>
       </ClientProvider>
     </ClientListProvider>
   </BrowserRouter>,
