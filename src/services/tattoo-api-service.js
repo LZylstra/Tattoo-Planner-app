@@ -1,4 +1,5 @@
 import TokenService from "../services/token-service";
+import TattooContext from "../contexts/TattooContext";
 import config from "../config";
 
 const TattooApiService = {
@@ -57,25 +58,53 @@ const TattooApiService = {
       // console.log(res.json());
       return res.json();
     });
+  },
+  postTattoo(newTattoo) {
+    const {
+      client,
+      title,
+      position,
+      info,
+      curr_status,
+      tattoo_rating
+    } = newTattoo;
+    return fetch(`${config.API_ENDPOINT}/tattoos/`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify({
+        client: client,
+        title: title,
+        position: position,
+        info: info,
+        curr_status: curr_status,
+        tattoo_rating: tattoo_rating
+      })
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
+      }
+      // console.log(res.json());
+      return res.json();
+    });
+  },
+  deleteTattoo(tattooId) {
+    fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) return res.json().then(e => Promise.reject(e));
+        // return res.json();
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   }
-
-  //   postClient(full_name, phone, email, client_rating) {
-  //     return fetch(`${config.API_ENDPOINT}/clients`, {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json",
-  //         authorization: `bearer ${TokenService.getAuthToken()}`
-  //       },
-  //       body: JSON.stringify({
-  //         full_name: full_name,
-  //         phone: phone,
-  //         email: email,
-  //         client_rating: client_rating
-  //       })
-  //     }).then(res =>
-  //       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-  //     );
-  //   }
 };
 
 export default TattooApiService;

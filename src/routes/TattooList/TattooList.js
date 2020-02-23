@@ -9,22 +9,42 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 class TattooList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { handleDelete: {} };
+  }
   static contextType = TattooListContext;
 
+  setTattooList(list) {
+    this.setState({ tattooListState: list });
+  }
   componentDidMount() {
     this.context.clearError();
     TattooApiService.getTattoos()
       .then(this.context.setTattooList)
+      // .then(this.state.setTattooList)
       .catch(this.context.setError);
   }
-
+  handleDelete() {
+    TattooApiService.getTattoos()
+      .then(this.context.setTattooList)
+      .catch(this.context.setError);
+  }
   renderTattoos() {
     const { tattooList = [] } = this.context;
+    const stateTattoos = this.state.tattooListState;
+    // console.log(stateTattoos);
     if (tattooList[0] === undefined) {
       return <div>Loading</div>;
     } else {
       //  console.log(tattooList);
-      return tattooList.map(tattoo => <Tile key={tattoo.id} tattoo={tattoo} />);
+      return tattooList.map(tattoo => (
+        <Tile
+          key={tattoo.id}
+          tattoo={tattoo}
+          onDeleteSuccess={this.handleDelete}
+        />
+      ));
     }
   }
 
@@ -38,24 +58,6 @@ class TattooList extends Component {
         ) : (
           this.renderTattoos()
         )}
-        {/* <Link to="/tattoo">
-          <Tile line1="Butterfly" line2="Sarah Smith" />
-        </Link>
-        <Link to="/tattoo">
-          <Tile line1="Dragon" line2="Gabriel Bellamy" />
-        </Link>
-        <Link to="/tattoo">
-          <Tile line1="Dog Portrait" line2="Janice Bigby" />
-        </Link>
-        <Link to="/tattoo">
-          <Tile line1="Tribal" line2="Helen Henderson" />
-        </Link>
-        <Link to="/tattoo">
-          <Tile line1="Flower" line2="Robert Morelli" />
-        </Link>
-        <Link to="/tattoo">
-          <Tile line1="Tree" line2="Arthur Hays" />
-        </Link> */}
         <div className="tattooList_button-container">
           <CircleButton
             tag={Link}

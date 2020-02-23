@@ -12,9 +12,12 @@ export function Rating({ rating, type }) {
     { filled: false },
     { filled: false }
   ];
-
-  for (let i = 0; i < rating; i++) {
-    stars[i].filled = true;
+  if (rating === undefined) {
+    console.log("loading");
+  } else {
+    for (let i = 0; i < rating; i++) {
+      stars[i].filled = true;
+    }
   }
 
   if (ratingType === "client") {

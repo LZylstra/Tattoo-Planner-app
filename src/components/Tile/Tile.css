@@ -29,3 +29,20 @@ h4 {
 .tile h3 {
   color: white;
 }
+
+.delete {
+  height: 40px;
+  float: right;
+  position: absolute;
+  font-size: 25px;
+  background-color: transparent;
+  border-radius: 40%;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.delete:hover {
+  color: red;
+}
+.delete button {
+  background-color: transparent;
+}

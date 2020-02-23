@@ -5,7 +5,8 @@ const TattooListContext = React.createContext({
   error: null,
   setError: () => {},
   clearError: () => {},
-  setTattooList: () => {}
+  setTattooList: () => {},
+  addTattoo: () => {}
 });
 export default TattooListContext;
 
@@ -29,6 +30,10 @@ export class TattooListProvider extends Component {
     this.setState({ error: null });
   };
 
+  addTattoo = tattoo => {
+    this.setTattooList([...this.state.tattooList, tattoo]);
+  };
+
   render() {
     // console.log("goes in context render");
     // console.log(this.state);
@@ -37,7 +42,8 @@ export class TattooListProvider extends Component {
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
-      setTattooList: this.setTattooList
+      setTattooList: this.setTattooList,
+      addTattoo: this.addTattoo
     };
     return (
       <TattooListContext.Provider value={valueData}>
