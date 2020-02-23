@@ -39,7 +39,7 @@ export default class TattooForm extends Component {
       curr_status: "New",
       tattoo_rating: 0
     };
-    console.log(newTattoo);
+    //console.log(newTattoo);
 
     TattooApiService.postTattoo(newTattoo)
       //.then(this.context.addTattoo)
