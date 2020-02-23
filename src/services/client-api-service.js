@@ -45,7 +45,8 @@ const ClientApiService = {
       return res.json();
     });
   },
-  postClient(full_name, phone, email, client_rating) {
+  postClient(newClient) {
+    const { full_name, phone, email, client_rating, artist } = newClient;
     return fetch(`${config.API_ENDPOINT}/clients`, {
       method: "POST",
       headers: {
@@ -56,11 +57,16 @@ const ClientApiService = {
         full_name: full_name,
         phone: phone,
         email: email,
-        client_rating: client_rating
+        client_rating: client_rating,
+        artist: artist
       })
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
+      }
+      // console.log(res.json());
+      return res.json();
+    });
   }
 };
 

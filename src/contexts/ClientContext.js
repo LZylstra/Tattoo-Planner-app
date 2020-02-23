@@ -17,7 +17,8 @@ const ClientContext = React.createContext({
   setClient: () => {},
   clearClient: () => {},
   setClientsTattoos: () => {},
-  addClientTattoos: () => {}
+  addClientTattoos: () => {},
+  addClient: () => {}
 });
 
 export default ClientContext;
@@ -56,6 +57,10 @@ export class ClientProvider extends Component {
     this.setTattoos([...this.state.tattoos, tattoo]);
   };
 
+  addClient = client => {
+    this.setClient([...this.state.client, client]);
+  };
+
   render() {
     const valueData = {
       client: this.state.client,
@@ -66,7 +71,8 @@ export class ClientProvider extends Component {
       setClient: this.setClient,
       clearClient: this.clearClient,
       setClientTattoos: this.setClientTattoos,
-      addClientTattoo: this.addClientTattoo
+      addClientTattoo: this.addClientTattoo,
+      addClient: this.addClient
     };
     return (
       <ClientContext.Provider value={valueData}>
