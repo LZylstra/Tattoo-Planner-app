@@ -78,7 +78,7 @@ class UserHome extends Component {
           <Link to="/ledger">
             <Icon title="Ledger" picture={financialIcon} />
           </Link>
-          <Link to="/tattoo-list">
+          <Link to="/tattoos">
             <Icon title="Tattoos" picture={tattooIcon} />
           </Link>
         </div>

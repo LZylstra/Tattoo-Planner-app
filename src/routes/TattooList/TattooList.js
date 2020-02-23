@@ -20,8 +20,12 @@ class TattooList extends Component {
 
   renderTattoos() {
     const { tattooList = [] } = this.context;
-    //console.log(tattooList);
-    return tattooList.map(tattoo => <Tile key={tattoo.id} tattoo={tattoo} />);
+    if (tattooList[0] === undefined) {
+      return <div>Loading</div>;
+    } else {
+      //  console.log(tattooList);
+      return tattooList.map(tattoo => <Tile key={tattoo.id} tattoo={tattoo} />);
+    }
   }
 
   render() {

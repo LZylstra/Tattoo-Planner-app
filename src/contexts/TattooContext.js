@@ -1,25 +1,31 @@
 import React, { Component } from "react";
 
 export const nullTattoo = {
-  tattoos: {}
+  tattoo: {}
+};
+
+export const nullClient = {
+  client: {}
 };
 
 const TattooContext = React.createContext({
-  tattoos: nullTattoo,
+  tattoo: nullTattoo,
+  client: nullClient,
   error: null,
   setError: () => {},
   clearError: () => {},
   setTattoos: () => {},
-  clearTattoos: () => {}
-  //   setClientsTattoos: () => {},
-  //   addClientTattoos: () => {}
+  clearTattoos: () => {},
+  setTattoosClient: () => {},
+  clearTattoosClient: () => {}
 });
 
 export default TattooContext;
 
 export class TattoosProvider extends Component {
   state = {
-    tattoos: nullTattoo,
+    tattoo: nullTattoo,
+    client: nullClient,
     error: null
   };
 
@@ -34,30 +40,37 @@ export class TattoosProvider extends Component {
 
   setTattoo = tattoo => {
     this.setState({ tattoo });
+    // console.log(this.state.tattoo);
   };
 
   clearTattoo = () => {
     this.setTattoo(nullTattoo);
   };
 
-  //   setClientTattoos = tattoo => {
-  //     //console.log({ tattoo });
-  //     this.setState({ tattoo });
-  //     console.log(this.state.tattoo);
-  //   };
+  setTattoosClient = client => {
+    //console.log({ tattoo });
+    this.setState({ client });
+    // console.log(this.state.client);
+  };
 
+  clearTattoosClient = () => {
+    this.setTattoosClient(nullClient);
+  };
   //   addClientTattoo = tattoo => {
   //     this.setTattoos([...this.state.tattoos, tattoo]);
   //   };
 
   render() {
     const valueData = {
-      tattoos: this.state.tattoos,
+      tattoo: this.state.tattoo,
+      client: this.state.client,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
       setTattoo: this.setTattoo,
-      clearTattoo: this.clearTattoo
+      clearTattoo: this.clearTattoo,
+      setTattoosClient: this.setTattoosClient,
+      clearTattoosClient: this.clearTattoosClient
     };
     return (
       <TattooContext.Provider value={valueData}>

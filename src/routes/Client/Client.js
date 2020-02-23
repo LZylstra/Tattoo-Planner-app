@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Tile from "../../components/Tile/Tile";
-import { ClientStarRating } from "../../components/ClientStarRating/ClientStarRating";
+import { Rating } from "../../components/Rating/Rating";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import ClientContext from "../../contexts/ClientContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,7 +36,7 @@ class Client extends Component {
       <>
         <div className="client-header">
           <h3>{client.full_name}</h3>
-          <ClientStarRating rating={client.client_rating} />
+          <Rating type="client" rating={client.client_rating} />
         </div>
         <div className="contact-info">
           {" "}

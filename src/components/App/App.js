@@ -62,12 +62,8 @@ class App extends Component {
                 component={Registration}
               />
               <PrivateRoute exact path={"/home"} component={UserHome} />
-              <PrivateRoute
-                exact
-                path={"/tattoo-list"}
-                component={TattooList}
-              />
-              <PrivateRoute exact path={"/tattoo"} component={Tattoo} />
+              <PrivateRoute exact path={"/tattoos"} component={TattooList} />
+              <PrivateRoute exact path={"/tattoos/:id"} component={Tattoo} />
               <PrivateRoute exact path={"/add-tattoo"} component={TattooForm} />
               <PrivateRoute exact path={"/clients"} component={ClientList} />
               <PrivateRoute path={"/clients/:id"} component={Client} />

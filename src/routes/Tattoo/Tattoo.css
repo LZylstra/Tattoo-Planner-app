@@ -47,7 +47,9 @@
   margin-top: 70px;
   text-align: center;
 }
-
+.ClientHeartRating {
+  margin-left: 18%;
+}
 .rate-area-t {
   display: inline-block;
   padding: 0;

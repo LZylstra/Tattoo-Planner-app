@@ -44,7 +44,21 @@ const TattooApiService = {
       //console.log(res.json());
       return res.json();
     });
+  },
+  getTattoosClient(tattooId) {
+    return fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}/client`, {
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
+      }
+      // console.log(res.json());
+      return res.json();
+    });
   }
+
   //   postClient(full_name, phone, email, client_rating) {
   //     return fetch(`${config.API_ENDPOINT}/clients`, {
   //       method: "POST",

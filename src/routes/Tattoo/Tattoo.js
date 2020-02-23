@@ -1,44 +1,53 @@
-import React from "react";
+import React, { Component } from "react";
 import Tile from "../../components/Tile/Tile";
+import TattooContext from "../../contexts/TattooContext";
+import { Rating } from "../../components/Rating/Rating";
 import "./Tattoo.css";
+import TattooApiService from "../../services/tattoo-api-service";
+//import ClientApiService from "../../services/client-api-service";
 
-function Tattoo() {
-  return (
-    <div>
+class Tattoo extends Component {
+  static defaultProps = {
+    match: { params: {} }
+  };
+
+  static contextType = TattooContext;
+
+  componentDidMount() {
+    const tattooId = this.props.match.params.id;
+
+    this.context.clearError();
+    TattooApiService.getTattoo(tattooId)
+      .then(this.context.setTattoo)
+      .catch(this.context.setError);
+    TattooApiService.getTattoosClient(tattooId)
+      .then(this.context.setTattoosClient)
+      .catch(this.context.setError);
+  }
+
+  componentWillUnmount() {
+    this.context.clearTattoo();
+    this.context.clearTattoosClient();
+  }
+
+  renderTattoo() {
+    const { tattoo, client } = this.context;
+
+    return (
       <div className="tattoo-info">
-        <h2>Butterfly</h2>
-        <ul class="rate-area-t">
-          <input type="radio" id="5-star" name="rating" value="5" />
-          <label for="5-star" title="Amazing">
-            5 stars
-          </label>
-          <input type="radio" id="4-star" name="rating" value="4" />
-          <label for="4-star" title="Good">
-            4 stars
-          </label>
-          <input type="radio" id="3-star" name="rating" value="3" />
-          <label for="3-star" title="Average">
-            3 stars
-          </label>
-          <input type="radio" id="2-star" name="rating" value="2" />
-          <label for="2-star" title="Not Good">
-            2 stars
-          </label>
-          <input type="radio" id="1-star" name="rating" value="1" />
-          <label for="1-star" title="Bad">
-            1 star
-          </label>
-        </ul>
-        <p className="details">Status: Planning</p>
-        <p className="details">Location of Tattoo: Hip</p>
-        <p className="tattoo-desc">
-          Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
-        </p>
+        <h2>{tattoo.title}</h2>
+        <Rating
+          type="tattoo"
+          rating={tattoo.tattoo_rating}
+          className="heart-rating"
+        />
+        <p className="details">Status: {tattoo.curr_status}</p>
+        <p className="details">Location of Tattoo: {tattoo.position}</p>
+        <p className="tattoo-desc">{tattoo.info}</p>
         <div className="client-contact">
-          <h4>Sarah Smith</h4>
-          <p>Phone: 123-455-7890</p>
-          <p>Email: email@email.com</p>
+          <h4>{client.full_name}</h4>
+          <p>Phone: {client.phone}</p>
+          <p>Email: {client.email}</p>
         </div>
         <div className="client-ledger">
           <p>Deposit Amount: $100</p>
@@ -49,13 +58,62 @@ function Tattoo() {
           <p>Next Date: 02/13/20</p>
         </div>
       </div>
-      <div className="references">
-        <Tile line1="Art Reference 1" />
-        <Tile line1="Art Reference 2" />
-        <Tile line1="Art Reference3" />
+    );
+  }
+
+  render() {
+    const { error, tattoo, client } = this.context;
+
+    //console.log(`main render tattoo:`);
+    // console.log(tattoo);
+    let content;
+    if (error) {
+      content =
+        error.error === `Client doesn't exist` ? (
+          <p className="red">Client not found</p>
+        ) : (
+          <p className="red">There was an error</p>
+        );
+    } else if (tattoo === undefined || client === undefined) {
+      content = <div>Loading...</div>;
+    } else {
+      content = this.renderTattoo();
+    }
+
+    return (
+      <div>
+        {content}
+        {/* <div>
+
+          <p className="details">Status: Planning</p>
+          <p className="details">Location of Tattoo: Hip</p>
+          <p className="tattoo-desc">
+            Description: Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua.{" "}
+          </p>
+          <div className="client-contact">
+            <h4>Sarah Smith</h4>
+            <p>Phone: 123-455-7890</p>
+            <p>Email: email@email.com</p>
+          </div>
+          <div className="client-ledger">
+            <p>Deposit Amount: $100</p>
+            <p>Deposit Type: Cash</p>
+            <p>Tattoo Quote: $300</p>
+          </div>
+          <div className="next-date">
+            <p>Next Date: 02/13/20</p>
+          </div>
+        </div>*/}
+        <div className="references">
+          <Tile type="reference" line1="Art Reference 1" />
+          <Tile type="reference" line1="Art Reference 2" />
+          <Tile type="reference" line1="Art Reference3" />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Tattoo;

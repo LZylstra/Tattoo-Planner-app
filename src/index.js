@@ -1,8 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPlus, faStar as fasStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
+import {
+  faPlus,
+  faStar as fasStar,
+  faHeart as fasHeart
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar as farStar,
+  faHeart as farHeart
+} from "@fortawesome/free-regular-svg-icons";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App";
 import { ClientProvider } from "./contexts/ClientContext";
@@ -11,7 +18,7 @@ import { TattooListProvider } from "./contexts/TattooListContext";
 import { TattoosProvider } from "./contexts/TattooContext";
 import "./index.css";
 
-library.add(faPlus, farStar, fasStar);
+library.add(faPlus, farStar, fasStar, fasHeart, farHeart);
 
 ReactDOM.render(
   <BrowserRouter>
