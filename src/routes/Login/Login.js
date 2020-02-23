@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
+//import HeaderContext from "../../contexts/HeaderContext";
 import "./Login.css";
 
 export default class Login extends Component {
@@ -10,10 +11,14 @@ export default class Login extends Component {
     }
   };
 
+  // static contextType = HeaderContext;
+
   handleLoginSuccess = () => {
     const { location, history } = this.props;
     const destination = (location.state || {}).from || "/home";
     history.push(destination);
+    // this.props.updateLogin(true);
+    //this.context.setLoggedIn();
     // this.props.updateLogin(true);
   };
 
@@ -25,7 +30,10 @@ export default class Login extends Component {
           password
         </p>
         <h2>Login</h2>
-        <LoginForm onLoginSuccess={this.handleLoginSuccess} />
+        <LoginForm
+          onLoginSuccess={this.handleLoginSuccess}
+          // updateLogin={this.props.updateLogin}
+        />
       </div>
     );
   }

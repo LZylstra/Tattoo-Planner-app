@@ -15,6 +15,7 @@ import ClientForm from "../../components/ClientForm/ClientForm";
 import TattooForm from "../../components/TattooForm/TattooFrom";
 import Login from "../../routes/Login/Login";
 import Registration from "../../routes/Registration/Registration";
+import { HeaderProvider } from "../../contexts/HeaderContext";
 import "./App.css";
 
 class App extends Component {
@@ -39,17 +40,28 @@ class App extends Component {
   };
 
   render() {
+    // const value = {
+    //   isLoggedIn: this.state.isLoggedIn
+    // };
     return (
       <main className="App">
         <div className="App">
           <header className="App_header">
-            <Header />
+            <Header
+              updateLogin={this.updateLogin}
+              LoggedIn={this.state.isLoggedIn}
+            />
           </header>
           <main className="App_main">
             {this.state.hasError && <p className="red">There was an error!</p>}
             <Switch>
               <Route exact path={"/"} component={LandingPage} />
-              <PublicOnlyRoute exact path={"/login"} component={Login} />
+              <PublicOnlyRoute
+                exact
+                path={"/login"}
+                component={Login}
+                updateLogin={this.updateLogin}
+              />
               {/* <PublicOnlyRoute
                 path={"/login"}
                 render={props => (

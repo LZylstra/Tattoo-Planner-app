@@ -9,7 +9,9 @@
   width: 90%;
   margin: auto;
 }
-
+.client-delete:hover {
+  color: red;
+}
 .client-delete {
   height: 40px;
   display: float;

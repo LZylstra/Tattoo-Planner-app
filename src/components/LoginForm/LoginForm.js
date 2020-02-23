@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TokenService from "../../services/token-service";
 import { Button, Input } from "../../utils/utils";
 import AuthApiService from "../../services/auth-api-service";
+//import HeaderContext from "../../contexts/HeaderContext";
 
 export default class LoginForm extends Component {
   static defaultProps = {
@@ -9,6 +10,7 @@ export default class LoginForm extends Component {
   };
 
   state = { error: null };
+  // static contextType = HeaderContext;
 
   handleSubmitBasicAuth = ev => {
     ev.preventDefault();
@@ -37,6 +39,8 @@ export default class LoginForm extends Component {
         password.value = "";
         TokenService.saveAuthToken(res.authToken);
         this.props.onLoginSuccess();
+        //  this.props.updateLogin(true);
+        //this.context.setLoggedIn();
       })
       .catch(res => {
         this.setState({ error: res.error });

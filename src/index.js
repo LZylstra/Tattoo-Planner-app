@@ -4,6 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faPlus,
   faTrashAlt,
+  faCaretDown,
   faStar as fasStar,
   faHeart as fasHeart
 } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +20,15 @@ import { TattooListProvider } from "./contexts/TattooListContext";
 import { TattoosProvider } from "./contexts/TattooContext";
 import "./index.css";
 
-library.add(faPlus, farStar, fasStar, fasHeart, farHeart, faTrashAlt);
+library.add(
+  faPlus,
+  farStar,
+  fasStar,
+  fasHeart,
+  farHeart,
+  faTrashAlt,
+  faCaretDown
+);
 
 ReactDOM.render(
   <BrowserRouter>

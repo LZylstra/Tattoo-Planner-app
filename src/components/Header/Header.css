@@ -1,16 +1,24 @@
 .Header {
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  height: 100px;
+  /* display: flex; */
+  /* justify-content: space-between;
+  align-items: baseline; */
+  text-align: center;
   background-image: linear-gradient(black, #212121);
 }
 .Header h1 {
   margin: 0;
-  padding-left: 100px;
+  /* padding-left: 100px; */
   padding-top: 15px;
-  color: #ca3e47;
+  text-align: center;
 }
+.Header_loggedIn {
+  display: inline-flex;
+}
+/* #app-name {
+  margin: auto;
+  text-align: center;
+} */
 
 .Header h1 a {
   text-decoration: none;
@@ -33,17 +41,28 @@
 .Header_loggedIn {
   padding-top: 10px;
 }
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 680px) {
   .Header {
-    justify-content: space-around;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
   .Header h1 {
     font-size: 22pt;
+    margin-left: 20px;
   }
   .Header a {
     padding-bottom: 10px;
   }
   .links {
     padding-right: 35px;
+  }
+  .Header_loggedIn {
+    margin-right: 20px;
+  }
+}
+@media screen and (min-width: 617px) {
+  .Header {
+    height: 80px;
   }
 }
