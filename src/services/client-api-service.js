@@ -67,6 +67,21 @@ const ClientApiService = {
       // console.log(res.json());
       return res.json();
     });
+  },
+  deleteClient(clientId) {
+    fetch(`${config.API_ENDPOINT}/clients/${clientId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) return res.json().then(e => Promise.reject(e));
+        // return res.json();
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   }
 };
 

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Row.css";
+import ClientApiService from "../../services/client-api-service";
 
 class Row extends Component {
   static defaultProps = {
@@ -12,9 +14,12 @@ class Row extends Component {
   };
   handleClickDeleteClient = e => {
     const { history } = this.props;
-
     const clientId = this.props.client.id;
+    e.preventDefault();
     console.log(clientId);
+
+    ClientApiService.deleteClient(clientId);
+    history.go(0);
   };
   render() {
     const { client } = this.props;
@@ -49,4 +54,4 @@ class Row extends Component {
   }
 }
 
-export default Row;
+export default withRouter(Row);
