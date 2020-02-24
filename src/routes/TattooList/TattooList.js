@@ -32,7 +32,7 @@ class TattooList extends Component {
   }
   renderTattoos() {
     const { tattooList = [] } = this.context;
-    const stateTattoos = this.state.tattooListState;
+    // const stateTattoos = this.state.tattooListState;
     // console.log(stateTattoos);
     if (tattooList[0] === undefined) {
       return <div>Loading</div>;

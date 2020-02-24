@@ -10,23 +10,36 @@ export default class EventForm extends Component {
   render() {
     const { error } = this.state;
     return (
-      <form className="EventForm" onSubmit={this.handleSubmitEvent}>
-        <div role="alert">{error && <p className="red">{error}</p>}</div>
-        <div className="title">
-          <label htmlFor="EventForm_title">Title</label>
-          <Input required name="title" id="ClientForm_title"></Input>
-        </div>
-        <div className="password">
-          <label htmlFor="LoginForm__password">Password</label>
-          <Input
-            required
-            name="password"
-            type="password"
-            id="LoginForm__password"
-          ></Input>
-        </div>
-        <Button type="submit">Login</Button>
-      </form>
+      <div id="add-event" title="Add Event">
+        <form className="add-event-form" onSubmit={this.handleSubmitEvent}>
+          <div role="alert">{error && <p className="red">{error}</p>}</div>
+          <div className="event-title-add">
+            <label htmlFor="eventAddForm_title">Title For Event</label>
+            <Input
+              required
+              name="event_title-add"
+              id="eventAddForm_title"
+            ></Input>
+          </div>
+          <div className="event-client-add">
+            <label htmlFor="eventAddForm_tattoo">Client</label>
+            <Input
+              required
+              name="event_client-add"
+              id="eventEditForm_client"
+            ></Input>
+          </div>
+          <div className="event-start-add">
+            <label htmlFor="eventAddForm_start">Start Time</label>
+            <Input
+              required
+              name="event_start-add"
+              id="eventEditForm_start"
+            ></Input>
+          </div>
+          <Button type="submit">Submit</Button>
+        </form>
+      </div>
     );
   }
 }

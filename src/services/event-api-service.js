@@ -1,9 +1,9 @@
 import TokenService from "../services/token-service";
 import config from "../config";
 
-const TattooApiService = {
-  getTattoos() {
-    return fetch(`${config.API_ENDPOINT}/tattoos`, {
+const EventApiService = {
+  getEvents() {
+    return fetch(`${config.API_ENDPOINT}/events`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
@@ -12,14 +12,14 @@ const TattooApiService = {
         if (!res.ok) {
           res.json().then(e => Promise.reject(e));
         }
-        //console.log(res.json());
+        // console.log(res.json());
         return res.json();
       }
       //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
-  getTattoo(tattooId) {
-    return fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}`, {
+  getEvent(eventId) {
+    return fetch(`${config.API_ENDPOINT}/events/${eventId}`, {
       headers: { authorization: `bearer ${TokenService.getAuthToken()}` }
     }).then(
       res => {
@@ -32,54 +32,34 @@ const TattooApiService = {
       //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
-  getClientTattoos(clientId) {
-    return fetch(`${config.API_ENDPOINT}/tattoos/client/${clientId}`, {
-      headers: {
-        authorization: `bearer ${TokenService.getAuthToken()}`
-      }
-    }).then(res => {
-      if (!res.ok) {
-        res.json().then(e => Promise.reject(e));
-      }
-      //console.log(res.json());
-      return res.json();
-    });
-  },
-  getTattoosClient(tattooId) {
-    return fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}/client`, {
-      headers: {
-        authorization: `bearer ${TokenService.getAuthToken()}`
-      }
-    }).then(res => {
-      if (!res.ok) {
-        res.json().then(e => Promise.reject(e));
-      }
-      // console.log(res.json());
-      return res.json();
-    });
-  },
-  postTattoo(newTattoo) {
+  postEvent(newEvent) {
     const {
-      client,
       title,
-      position,
-      info,
+      description,
+      eventdate,
+      start_time,
+      end_time,
+      in_person,
       curr_status,
-      tattoo_rating
-    } = newTattoo;
-    return fetch(`${config.API_ENDPOINT}/tattoos/`, {
+      all_day,
+      tattoo
+    } = newEvent;
+    return fetch(`${config.API_ENDPOINT}/events/`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify({
-        client: client,
         title: title,
-        position: position,
-        info: info,
+        description: description,
+        eventdate: eventdate,
+        start_time: start_time,
+        end_time: end_time,
+        in_person: in_person,
         curr_status: curr_status,
-        tattoo_rating: tattoo_rating
+        all_day: all_day,
+        tattoo: tattoo
       })
     }).then(res => {
       if (!res.ok) {
@@ -89,8 +69,8 @@ const TattooApiService = {
       return res.json();
     });
   },
-  deleteTattoo(tattooId) {
-    fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}`, {
+  deleteEvent(eventId) {
+    fetch(`${config.API_ENDPOINT}/events/${eventId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"
@@ -103,7 +83,33 @@ const TattooApiService = {
       .catch(error => {
         console.error({ error });
       });
+  },
+  getEventTattoo(eventId) {
+    return fetch(`${config.API_ENDPOINT}/events/${eventId}/tattoo`, {
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
+      }
+      // console.log(res.json());
+      return res.json();
+    });
+  },
+  getTattoosEvents(tattooId) {
+    return fetch(`${config.API_ENDPOINT}/events/tattoo/${tattooId}`, {
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
+      }
+      // console.log(res.json());
+      return res.json();
+    });
   }
 };
 
-export default TattooApiService;
+export default EventApiService;

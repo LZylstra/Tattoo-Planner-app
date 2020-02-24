@@ -18,6 +18,7 @@ import { ClientProvider } from "./contexts/ClientContext";
 import { ClientListProvider } from "./contexts/ClientListContext";
 import { TattooListProvider } from "./contexts/TattooListContext";
 import { TattoosProvider } from "./contexts/TattooContext";
+import { EventProvider } from "./contexts/EventContext";
 import "./index.css";
 
 library.add(
@@ -32,15 +33,17 @@ library.add(
 
 ReactDOM.render(
   <BrowserRouter>
-    <ClientListProvider>
-      <ClientProvider>
-        <TattooListProvider>
-          <TattoosProvider>
-            <App />
-          </TattoosProvider>
-        </TattooListProvider>
-      </ClientProvider>
-    </ClientListProvider>
+    <EventProvider>
+      <ClientListProvider>
+        <ClientProvider>
+          <TattooListProvider>
+            <TattoosProvider>
+              <App />
+            </TattoosProvider>
+          </TattooListProvider>
+        </ClientProvider>
+      </ClientListProvider>
+    </EventProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

@@ -15,7 +15,7 @@ import ClientForm from "../../components/ClientForm/ClientForm";
 import TattooForm from "../../components/TattooForm/TattooFrom";
 import Login from "../../routes/Login/Login";
 import Registration from "../../routes/Registration/Registration";
-import { HeaderProvider } from "../../contexts/HeaderContext";
+// import { HeaderProvider } from "../../contexts/HeaderContext";
 import "./App.css";
 
 class App extends Component {
