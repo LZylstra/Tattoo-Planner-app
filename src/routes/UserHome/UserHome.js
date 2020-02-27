@@ -13,24 +13,57 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import { Link } from "react-router-dom";
 import { Button, Input, Textarea } from "../../utils/utils";
+import Modal from "react-modal";
 import "./UserHome.css";
 
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import { Calendar } from "@fullcalendar/core";
+//import { Calendar } from "@fullcalendar/core";
+Modal.setAppElement(document.getElementById("root"));
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
+  }
+};
 
 class UserHome extends Component {
   calendarComponentRef = React.createRef();
+  constructor() {
+    super();
+    this.state = {
+      //error: null,
+      calendarWeekends: true,
+      eventList: [],
+      dateClicked: false,
+      modalIsOpen: false
+    };
 
-  state = {
-    //error: null,
-    calendarWeekends: true,
-    eventList: [],
-    dateClicked: false
-  };
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
 
   static contextType = EventContext;
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    //  this.subtitle.style.color = "#f00";
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
 
   saveEvents(event) {
     // const newList = this.modifyEventList(event);
@@ -54,7 +87,7 @@ class UserHome extends Component {
   handleDateClick = arg => {
     //console.log("goes in date clicked");
     console.log(`date clicked: ${arg.dateStr}`);
-    this.setDateClicked(true);
+    //this.setDateClicked(true);
 
     //this.renderAddEvent();
     //if there is no event open the create event modal
@@ -131,15 +164,8 @@ class UserHome extends Component {
   }
 
   modifyEventList(oldList) {
-    //  console.log(oldList);
     let newList = [];
-    // console.log("modify event list");
-    //console.log(oldList.length);
     for (let i = 0; i < oldList.length; i++) {
-      // console.log(oldList[i].eventdate);
-      //console.log(oldList[i].eventdate);
-      // let timeFormat = oldList[i].eventdate;
-      // console.log(timeFormat);
       let newObj = {
         title: oldList[i].title,
         start: oldList[i].eventdate
@@ -187,9 +213,56 @@ class UserHome extends Component {
               weekends={true}
               eventRender={this.eventRender}
             />
-            <div className="details">
+            <div className="event-details">
               <h4>Events</h4>
               {/* {eventContent} */}
+              <button onClick={this.openModal}>Create Event</button>
+              <Modal
+                isOpen={this.state.modalIsOpen}
+                onAfterOpen={this.afterOpenModal}
+                onRequestClose={this.closeModal}
+                style={customStyles}
+                contentLabel="Add Event Modal"
+                className="Modal"
+                overlayClassName="Overlay"
+              >
+                {/* <h2 ref={subtitle => (this.subtitle = subtitle)}>Hello</h2> */}
+
+                <div id="add-event" title="Add Event">
+                  <form
+                    className="add-event-form"
+                    onSubmit={this.handleSubmitEvent}
+                  >
+                    <label htmlFor="eventAddForm_title">Title For Event</label>
+                    <Input
+                      required
+                      name="event_title-add"
+                      id="eventAddForm_title"
+                    ></Input>
+
+                    <label htmlFor="eventAddForm_tattoo">Client</label>
+                    <Input
+                      required
+                      name="event_client-add"
+                      id="eventEditForm_client"
+                    ></Input>
+
+                    <label htmlFor="eventAddForm_start">Start Time</label>
+                    <Input
+                      required
+                      name="event_start-add"
+                      id="eventEditForm_start"
+                    ></Input>
+
+                    <Button className="modal-btn" onClick={this.closeModal}>
+                      Close
+                    </Button>
+                    <Button className="modal-btn" type="submit">
+                      Submit
+                    </Button>
+                  </form>
+                </div>
+              </Modal>
             </div>
           </div>
         </div>
