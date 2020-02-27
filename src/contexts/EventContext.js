@@ -7,13 +7,17 @@ export const nullEvent = {
 const EventContext = React.createContext({
   event: nullEvent,
   eventList: [],
+  clientList: [],
+  tattooList: [],
   error: null,
   setError: () => {},
   clearError: () => {},
   setEvent: () => {},
   clearEvent: () => {},
   setEventList: () => {},
-  addEvent: () => {}
+  addEvent: () => {},
+  setClientList: () => {},
+  setTattooList: () => {}
 });
 
 export default EventContext;
@@ -22,6 +26,8 @@ export class EventProvider extends Component {
   state = {
     event: nullEvent,
     eventList: [],
+    clientList: [],
+    tattooList: [],
     error: null
   };
 
@@ -49,19 +55,33 @@ export class EventProvider extends Component {
 
   addEvent = event => {
     this.setEventList([...this.state.eventList, event]);
+    // console.log(this.state.eventList);
+  };
+
+  setClientList = clientList => {
+    this.setState({ clientList });
+    // console.log(this.state.clientList);
+  };
+
+  setTattooList = tattooList => {
+    this.setState({ tattooList });
   };
 
   render() {
     const valueData = {
       event: this.state.event,
       eventList: this.state.eventList,
+      clientList: this.state.clientList,
+      tattooList: this.state.tattooList,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
       setEvent: this.setEvent,
       clearEvent: this.clearEvent,
       setEventList: this.setEventList,
-      addEvent: this.addEvent
+      addEvent: this.addEvent,
+      setClientList: this.setClientList,
+      setTattooList: this.setTattooList
     };
     return (
       <EventContext.Provider value={valueData}>

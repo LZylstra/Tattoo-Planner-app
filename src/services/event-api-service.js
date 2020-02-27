@@ -65,7 +65,7 @@ const EventApiService = {
       if (!res.ok) {
         res.json().then(e => Promise.reject(e));
       }
-      // console.log(res.json());
+      //console.log(res.json());
       return res.json();
     });
   },

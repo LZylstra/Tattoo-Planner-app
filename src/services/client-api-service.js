@@ -12,7 +12,7 @@ const ClientApiService = {
         if (!res.ok) {
           res.json().then(e => Promise.reject(e));
         }
-        //console.log(res.json());
+        // console.log(res.json());
         return res.json();
       }
       //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()

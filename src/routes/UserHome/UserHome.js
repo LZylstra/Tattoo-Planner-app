@@ -5,15 +5,17 @@ import clientIcon from "../../img/client-icon.png";
 import tattooIcon from "../../img/tattoo-icon.png";
 import EventApiService from "../../services/event-api-service";
 import EventContext from "../../contexts/EventContext";
+import ClientApiService from "../../services/client-api-service";
 //import calendarPlaceholder from "../../img/calendar-placeholder.png";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Button, Input, Textarea } from "../../utils/utils";
 import Modal from "react-modal";
+import Select from "react-select";
 import "./UserHome.css";
 
 import "@fullcalendar/core/main.css";
@@ -22,17 +24,59 @@ import "@fullcalendar/timegrid/main.css";
 //import { Calendar } from "@fullcalendar/core";
 Modal.setAppElement(document.getElementById("root"));
 
+// const customStyles = {
+//   content: {
+//     top: "50%",
+//     left: "50%",
+//     right: "auto",
+//     bottom: "auto",
+//     marginRight: "-50%",
+//     transform: "translate(-50%, -50%)"
+//   }
+// };
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
+  // control: (base, state) => ({
+  //   ...base,
+  //   background: "#023950",
+  //   // match with the menu
+  //   borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+  //   // Overwrittes the different states of border
+  //   borderColor: state.isFocused ? "yellow" : "green",
+  //   // Removes weird border around container
+  //   boxShadow: state.isFocused ? null : null,
+  //   "&:hover": {
+  //     // Overwrittes the different states of border
+  //     borderColor: state.isFocused ? "red" : "blue"
+  //   }
+  // }),
+  menu: base => ({
+    ...base,
+    //   // override border radius to match the box
+    //   borderRadius: 0,
+    //   // kill the gap
+    marginTop: 0,
+    height: "fit-content"
+  }),
+  menuList: () => ({
+    // ...base,
+    // kill the white space on first and last option
+    padding: 5,
+    height: "fit-content"
+  }),
+  option: base => ({
+    ...base,
+    height: "50px",
+    color: "black"
+  }),
+  control: base => ({
+    ...base,
+    color: "black"
+  }),
+  singleValue: base => ({
+    ...base,
+    color: "black"
+  })
 };
-
 class UserHome extends Component {
   calendarComponentRef = React.createRef();
   constructor() {
@@ -41,17 +85,30 @@ class UserHome extends Component {
       //error: null,
       calendarWeekends: true,
       eventList: [],
-      dateClicked: false,
-      modalIsOpen: false
+      modalIsOpen: false,
+      dateClicked: null,
+      clientId: null,
+      tattooList: []
     };
-
+    this.setDateClicked = this.setDateClicked.bind(this);
+    this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
+    this.handleDateClick = this.handleDateClick.bind(this);
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   static contextType = EventContext;
+  setClientId(id) {
+    this.setState({ clientId: id });
+  }
+  setTattooList(tattoos) {
+    this.setState({ tattooList: tattoos });
+  }
 
+  setDateClicked(date) {
+    this.setState({ dateClicked: date });
+  }
   openModal() {
     this.setState({ modalIsOpen: true });
   }
@@ -71,10 +128,8 @@ class UserHome extends Component {
     // console.log(`goes here ${this.state.calendarEvents}`);
   }
 
-  setDateClicked(option) {
-    this.setState(option);
-  }
   componentDidMount() {
+    this.context.clearError();
     EventApiService.getEvents()
       .then(this.context.setEventList)
       .then(() => {
@@ -82,11 +137,23 @@ class UserHome extends Component {
         this.saveEvents(this.modifyEventList(eventList));
       })
       .catch(this.context.setError);
+
+    ClientApiService.getClients()
+      .then(this.context.setClientList)
+      .catch(this.context.setError);
   }
 
+  componentWillUnmount() {
+    this.context.clearEvent();
+  }
   handleDateClick = arg => {
+    this.setDateClicked(arg.dateStr);
+    console.log(this.state.dateClicked);
+
+    this.openModal();
+
     //console.log("goes in date clicked");
-    console.log(`date clicked: ${arg.dateStr}`);
+    // console.log(`date clicked: ${arg.dateStr}`);
     //this.setDateClicked(true);
 
     //this.renderAddEvent();
@@ -104,11 +171,39 @@ class UserHome extends Component {
     //     })
     //   });
   };
-
-  handleSubmitEvent(e) {
+  // getTattoos() {
+  //   console.log("goes in here");
+  //   let cid = this.state.clientId;
+  //   ClientApiService.getClientTattoos(cid).then(this.context.setTattooList);
+  // }
+  handleSubmitEvent = e => {
     e.preventDefault();
-    console.log(e);
-  }
+    const clientId = e.target["client-id"].value;
+    this.setClientId(clientId);
+
+    //console.log(this.state.tattooList);
+    const newEvent = {
+      title: e.target["event_title-add"].value,
+      // description: e.target['event_desc-add'].value,
+      eventdate: this.state.dateClicked,
+      start_time: e.target["event_start-add"].value,
+      // end_time,
+      in_person: true,
+      curr_status: "New",
+      all_day: true,
+      tattoo: 1 //not currently getting the tattoo id from input !! NEED TO FIX
+    };
+    console.log(newEvent);
+
+    EventApiService.postEvent(newEvent)
+      .then(this.context.addEvent)
+      .then(event => {
+        let eventList = this.context.eventList;
+        this.saveEvents(this.modifyEventList(eventList));
+        // console.log(this.state.eventList);
+      })
+      .then(this.closeModal());
+  };
 
   renderAddEvent() {
     const { error } = this.context;
@@ -177,7 +272,34 @@ class UserHome extends Component {
     return newList;
   }
 
+  selectTattoo() {
+    let tattoos = this.state.tattooList;
+    let content = tattoos.map(tattoo => (
+      <option key={tattoo.id} value={tattoo.id}>
+        {tattoo.title}
+      </option>
+    ));
+
+    return content;
+  }
   render() {
+    const { clientList = [] } = this.context;
+    //  console.log(clientList);
+    let clientDropDown;
+    if (clientList === undefined) {
+      console.log("loading");
+    } else {
+      clientDropDown = clientList.map(client => (
+        <option key={client.id} value={client.id}>
+          {client.full_name}
+        </option>
+      ));
+
+      //react-select
+      // clientDropDown = clientList.map(client => [
+      //   { label: `${client.full_name}`, value: `${client.id}` }
+      // ]);
+    }
     // const currentList = this.state.eventList;
     // console.log(currentList);
     // const eventContent;
@@ -221,7 +343,7 @@ class UserHome extends Component {
                 isOpen={this.state.modalIsOpen}
                 onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
-                style={customStyles}
+                //style={customStyles}
                 contentLabel="Add Event Modal"
                 className="Modal"
                 overlayClassName="Overlay"
@@ -240,15 +362,32 @@ class UserHome extends Component {
                       id="eventAddForm_title"
                     ></Input>
 
-                    <label htmlFor="eventAddForm_tattoo">Client</label>
-                    <Input
+                    <label htmlFor="eventAddFormclient">Client</label>
+                    <select id="client-select" name="client-id" required>
+                      <option value="">Select a Client...</option>
+                      {clientDropDown}
+                    </select>
+                    {/* <Select
+                      className="react-dropdown-style"
+                      options={clientDropDown}
+                      styles={customStyles}
+                      onChange={this.getTattoos}
+                    /> */}
+
+                    {/* <label htmlFor="eventAddForm_tattoo">Tattoo</label>
+                    <select
+                      id="tattoo-select"
+                      name="tattoo-id"
+                      //onChange={this.getTattoos}
                       required
-                      name="event_client-add"
-                      id="eventEditForm_client"
-                    ></Input>
+                    >
+                      <option value="">Select a Tattoo...</option>
+                      {this.selectTattoo()}
+                    </select> */}
 
                     <label htmlFor="eventAddForm_start">Start Time</label>
                     <Input
+                      type="time"
                       required
                       name="event_start-add"
                       id="eventEditForm_start"
