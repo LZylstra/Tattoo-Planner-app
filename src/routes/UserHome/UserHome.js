@@ -172,8 +172,8 @@ class UserHome extends Component {
   handleDeleteEvent = e => {
     e.preventDefault();
     let eventId = this.state.event.id;
-    console.log("delete");
-    console.log(eventId);
+    //console.log("delete");
+    //console.log(eventId);
 
     EventApiService.deleteEvent(eventId);
 
@@ -216,7 +216,7 @@ class UserHome extends Component {
     e.preventDefault();
     const clientId = e.target["client-id"].value;
     this.setClientId(clientId);
-
+    console.log(`${e.target["event_start-add"].value}:00`);
     //console.log(this.state.tattooList);
     const newEvent = {
       title: e.target["event_title-add"].value,
@@ -229,7 +229,7 @@ class UserHome extends Component {
       all_day: true,
       tattoo: 1 //not currently getting the tattoo id from input !! NEED TO FIX
     };
-    console.log(newEvent);
+    //console.log(newEvent);
 
     EventApiService.postEvent(newEvent)
       .then(this.context.addEvent)
@@ -364,6 +364,7 @@ class UserHome extends Component {
   modifyEventList(oldList) {
     let newList = [];
     for (let i = 0; i < oldList.length; i++) {
+      console.log(oldList[i].eventdate);
       let newObj = {
         title: oldList[i].title,
         start: oldList[i].eventdate
@@ -394,7 +395,7 @@ class UserHome extends Component {
       if (eventList[i].title === clickedEventTitle) {
         clickedEvent = eventList[i];
         this.setEvent(clickedEvent);
-        console.log(this.state.setEvent);
+        // console.log(this.state.setEvent);
         break;
       }
     }
