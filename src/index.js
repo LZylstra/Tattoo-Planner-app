@@ -4,6 +4,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faPlus,
   faTrashAlt,
+  faTimesCircle,
+  faWindowClose,
   faCaretDown,
   faStar as fasStar,
   faHeart as fasHeart
@@ -23,6 +25,8 @@ import "./index.css";
 
 library.add(
   faPlus,
+  faWindowClose,
+  faTimesCircle,
   farStar,
   fasStar,
   fasHeart,

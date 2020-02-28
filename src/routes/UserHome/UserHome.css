@@ -12,6 +12,31 @@
   width: 90%;
   max-width: 1090px;
 }
+.close-btn {
+  padding: 0.05px;
+  border-radius: 100%;
+  top: 10px;
+  position: absolute;
+  right: 4%;
+  background-color: #dfcdc3;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.close-btn-font:hover {
+  color: red;
+}
+.event-delete:hover {
+  color: red;
+}
+.event-delete {
+  text-align: center;
+  padding: 3px;
+  right: 8%;
+  margin-left: 0;
+  font-size: 20px;
+  background-color: #dfcdc3;
+  border-radius: 30%;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
 
 .icon-row {
   text-align: center;
@@ -55,7 +80,9 @@
 .fc-view > table {
   z-index: 0;
 }
-
+.fc-button-group {
+  z-index: 0;
+}
 .fc-button-group > .fc-button:focus,
 .fc-button-group > .fc-button:active,
 .fc-button-group > .fc-button.fc-button-active {
@@ -64,11 +91,14 @@
 
 /* Event Details Styling  */
 .event-details {
-  background-color: #414141;
-  width: 100%;
+  background-color: black;
   margin: 0;
-  margin-top: 20px;
-  height: 280px;
+  height: fit-content;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.event-details h3 {
+  padding-top: 15px;
 }
 
 .Modal {
@@ -91,9 +121,16 @@
 .add-event {
   padding: 30px;
 }
-.modal-btn {
-  margin: 2px;
+
+.add-event-form {
+  padding: 10px;
 }
+.submit-btn {
+  text-align: center;
+  margin-left: 37%;
+  margin-bottom: 10px;
+}
+
 .Overlay {
   position: fixed;
   top: 0;
@@ -123,11 +160,19 @@
     width: 80%;
   }
   .Modal {
-    max-width: 450px;
+    max-width: fit-content;
   }
-
+  .event-details {
+    min-width: 150px;
+    padding: 25px;
+  }
+  .event-info-display {
+    max-width: 450px;
+    margin: 0;
+  }
   .add-event-form {
     padding: 30px;
+    width: 450px;
     height: 100%;
   }
   .modal-btn {

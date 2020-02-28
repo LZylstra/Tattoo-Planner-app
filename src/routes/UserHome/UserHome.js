@@ -14,6 +14,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import { Link, withRouter } from "react-router-dom";
 import { Button, Input, Textarea } from "../../utils/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import Select from "react-select";
 import "./UserHome.css";
@@ -21,6 +22,7 @@ import "./UserHome.css";
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+import { EventApi } from "@fullcalendar/core";
 //import { Calendar } from "@fullcalendar/core";
 Modal.setAppElement(document.getElementById("root"));
 
@@ -84,12 +86,20 @@ class UserHome extends Component {
     this.state = {
       //error: null,
       calendarWeekends: true,
+      view: null,
+      event: null,
+      eventTitle: null,
       eventList: [],
       modalIsOpen: false,
       dateClicked: null,
       clientId: null,
       tattooList: []
     };
+
+    this.setEventTitle = this.setEventTitle.bind(this);
+    this.setEvent = this.setEvent.bind(this);
+    this.handleEventClick = this.handleEventClick.bind(this);
+    this.setView = this.setView.bind(this);
     this.setDateClicked = this.setDateClicked.bind(this);
     this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
     this.handleDateClick = this.handleDateClick.bind(this);
@@ -99,6 +109,10 @@ class UserHome extends Component {
   }
 
   static contextType = EventContext;
+
+  setEventTitle(title) {
+    this.setState({ eventTitle: title });
+  }
   setClientId(id) {
     this.setState({ clientId: id });
   }
@@ -120,6 +134,7 @@ class UserHome extends Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+    this.setView(null);
   }
 
   saveEvents(event) {
@@ -128,6 +143,9 @@ class UserHome extends Component {
     // console.log(`goes here ${this.state.calendarEvents}`);
   }
 
+  setEvent = event => {
+    this.setState({ event: event });
+  };
   componentDidMount() {
     this.context.clearError();
     EventApiService.getEvents()
@@ -143,12 +161,30 @@ class UserHome extends Component {
       .catch(this.context.setError);
   }
 
+  setView = option => {
+    this.setState({ view: option });
+  };
+
   componentWillUnmount() {
     this.context.clearEvent();
   }
+
+  handleDeleteEvent = e => {
+    e.preventDefault();
+    let eventId = this.state.event.id;
+    console.log("delete");
+    console.log(eventId);
+
+    EventApiService.deleteEvent(eventId);
+
+    this.closeModal();
+    this.props.history.go(0);
+  };
+
   handleDateClick = arg => {
     this.setDateClicked(arg.dateStr);
-    console.log(this.state.dateClicked);
+    this.setView("add");
+    // console.log(this.state.dateClicked);
 
     this.openModal();
 
@@ -184,7 +220,7 @@ class UserHome extends Component {
     //console.log(this.state.tattooList);
     const newEvent = {
       title: e.target["event_title-add"].value,
-      // description: e.target['event_desc-add'].value,
+      description: e.target["event_desc-add"].value,
       eventdate: this.state.dateClicked,
       start_time: e.target["event_start-add"].value,
       // end_time,
@@ -205,40 +241,77 @@ class UserHome extends Component {
       .then(this.closeModal());
   };
 
+  //this is the modal to edit events
+  //would like to have drop down of clients and then once a client is selected
+  // a drop down of tattoos
   renderAddEvent() {
     const { error } = this.context;
-    //this is the modal to edit events
-    //would like to have drop down of clients and then once a client is selected
-    // a drop down of tattoos
+    const { clientList = [] } = this.context;
+    //  console.log(clientList);
+    let clientDropDown;
+    if (clientList === undefined) {
+      console.log("loading");
+    } else {
+      clientDropDown = clientList.map(client => (
+        <option key={client.id} value={client.id}>
+          {client.full_name}
+        </option>
+      ));
+    }
+
+    //react-select
+    // clientDropDown = clientList.map(client => [
+    //   { label: `${client.full_name}`, value: `${client.id}` }
+    // ]);
+
     return (
       <div id="add-event" title="Add Event">
         <form className="add-event-form" onSubmit={this.handleSubmitEvent}>
-          <div role="alert">{error && <p className="red">{error}</p>}</div>
-          <div className="event-title-add">
-            <label htmlFor="eventAddForm_title">Title For Event</label>
-            <Input
-              required
-              name="event_title-add"
-              id="eventAddForm_title"
-            ></Input>
-          </div>
-          <div className="event-client-add">
-            <label htmlFor="eventAddForm_tattoo">Client</label>
-            <Input
-              required
-              name="event_client-add"
-              id="eventEditForm_client"
-            ></Input>
-          </div>
-          <div className="event-start-add">
-            <label htmlFor="eventAddForm_start">Start Time</label>
-            <Input
-              required
-              name="event_start-add"
-              id="eventEditForm_start"
-            ></Input>
-          </div>
-          <Button type="submit">Submit</Button>
+          <Button className="close-btn" onClick={this.closeModal}>
+            <FontAwesomeIcon className="close-btn-font" icon="times-circle" />
+          </Button>
+          <label htmlFor="eventAddForm_title">Title For Event</label>
+          <Input
+            required
+            name="event_title-add"
+            id="eventAddForm_title"
+          ></Input>
+
+          <label htmlFor="eventAddFormclient">Client</label>
+          <select id="client-select" name="client-id" required>
+            <option value="">Select a Client...</option>
+            {clientDropDown}
+          </select>
+          {/* <Select
+          className="react-dropdown-style"
+          options={clientDropDown}
+          styles={customStyles}
+          onChange={this.getTattoos}
+        /> */}
+
+          {/* <label htmlFor="eventAddForm_tattoo">Tattoo</label>
+        <select
+          id="tattoo-select"
+          name="tattoo-id"
+          //onChange={this.getTattoos}
+          required
+        >
+          <option value="">Select a Tattoo...</option>
+          {this.selectTattoo()}
+        </select> */}
+
+          <label htmlFor="eventAddForm_start">Start Time</label>
+          <Input
+            type="time"
+            required
+            name="event_start-add"
+            id="eventEditForm_start"
+          ></Input>
+          <label htmlFor="eventAddForm_desc">Description</label>
+          <Textarea name="event_desc-add"></Textarea>
+          <Button className="submit-btn" type="submit">
+            Submit
+          </Button>
         </form>
       </div>
     );
@@ -246,16 +319,46 @@ class UserHome extends Component {
 
   renderViewEventDetails() {
     //use the url function of this api to display different things based on what's been clicked
-    const { event } = this.context;
-    // return eventList.map(event => (
-    //   <div></div>
-    // ));
-
-    // return (
-    //   <div className="event-details">
-    //     <h4>{content}</h4>
-    //   </div>
-    // );
+    //const { event } = this.context;
+    // const { clientList = [], eventList = [] } = this.context;
+    // //sconsole.log(eventList);
+    // let clickedEventTitle = this.state.event;
+    // let clickedEvent;
+    // // console.log(this.state.event);
+    // // if (eventList === undefined) {
+    // //   console.log("loading");
+    // // } else {
+    // for (let i = 0; i < eventList.length; i++) {
+    //   if (eventList[i].title === clickedEventTitle) {
+    //     clickedEvent = eventList[i];
+    //     this.context.setEvent(clickedEvent);
+    //     break;
+    //   }
+    // }
+    // }
+    let clickedEvent = this.state.event;
+    console.log(clickedEvent);
+    //console.log(this.state.eventId);
+    if (clickedEvent === null) {
+      console.log("loading");
+    } else {
+      //this.setEventId(clickedEvent.id);
+      // console.log(this.state.eventId);
+      //this.context.setEvent(clickedEvent);
+      return (
+        <div className="event-details">
+          <Button className="close-btn" onClick={this.closeModal}>
+            <FontAwesomeIcon className="close-btn-font" icon="times-circle" />
+          </Button>
+          <h3>{clickedEvent.title}</h3>
+          <p>{clickedEvent.start_time}</p>
+          <p className="event-info-display">{clickedEvent.description}</p>
+          <Button className="event-delete" onClick={this.handleDeleteEvent}>
+            <FontAwesomeIcon icon="trash-alt" />
+          </Button>
+        </div>
+      );
+    }
   }
 
   modifyEventList(oldList) {
@@ -272,6 +375,32 @@ class UserHome extends Component {
     return newList;
   }
 
+  handleEventClick(info) {
+    // console.log("event clicked");
+    // console.log(info.event.url);
+    if (info.event.title) {
+      this.setView("edit");
+      this.setEventTitle(info.event.title);
+    }
+    const { eventList = [] } = this.context;
+    //sconsole.log(eventList);
+    let clickedEventTitle = this.state.eventTitle;
+    let clickedEvent;
+    // console.log(this.state.event);
+    // if (eventList === undefined) {
+    //   console.log("loading");
+    // } else {
+    for (let i = 0; i < eventList.length; i++) {
+      if (eventList[i].title === clickedEventTitle) {
+        clickedEvent = eventList[i];
+        this.setEvent(clickedEvent);
+        console.log(this.state.setEvent);
+        break;
+      }
+    }
+    this.openModal();
+  }
+
   selectTattoo() {
     let tattoos = this.state.tattooList;
     let content = tattoos.map(tattoo => (
@@ -283,23 +412,23 @@ class UserHome extends Component {
     return content;
   }
   render() {
-    const { clientList = [] } = this.context;
-    //  console.log(clientList);
-    let clientDropDown;
-    if (clientList === undefined) {
-      console.log("loading");
-    } else {
-      clientDropDown = clientList.map(client => (
-        <option key={client.id} value={client.id}>
-          {client.full_name}
-        </option>
-      ));
+    // const { clientList = [] } = this.context;
+    // //  console.log(clientList);
+    // let clientDropDown;
+    // if (clientList === undefined) {
+    //   console.log("loading");
+    // } else {
+    //   clientDropDown = clientList.map(client => (
+    //     <option key={client.id} value={client.id}>
+    //       {client.full_name}
+    //     </option>
+    //   ));
 
-      //react-select
-      // clientDropDown = clientList.map(client => [
-      //   { label: `${client.full_name}`, value: `${client.id}` }
-      // ]);
-    }
+    //react-select
+    // clientDropDown = clientList.map(client => [
+    //   { label: `${client.full_name}`, value: `${client.id}` }
+    // ]);
+    //}
     // const currentList = this.state.eventList;
     // console.log(currentList);
     // const eventContent;
@@ -307,6 +436,12 @@ class UserHome extends Component {
     //   eventContent = this.renderAddEvent
     //   this.setDateClicked(false)
     // }
+    let content;
+    if (this.state.view === "add") {
+      content = this.renderAddEvent();
+    } else if (this.state.view === "edit") {
+      content = this.renderViewEventDetails();
+    }
     return (
       <div className="home">
         <div className="calendar-section">
@@ -328,6 +463,7 @@ class UserHome extends Component {
               events={this.state.eventList}
               dateClick={this.handleDateClick}
               selectable={true}
+              eventClick={this.handleEventClick}
               editable={true}
               eventLimit={true} // when too many events in a day, show the popover
               selectMirror={true}
@@ -335,10 +471,7 @@ class UserHome extends Component {
               weekends={true}
               eventRender={this.eventRender}
             />
-            <div className="event-details">
-              <h4>Events</h4>
-              {/* {eventContent} */}
-              <button onClick={this.openModal}>Create Event</button>
+            <div>
               <Modal
                 isOpen={this.state.modalIsOpen}
                 onAfterOpen={this.afterOpenModal}
@@ -348,59 +481,7 @@ class UserHome extends Component {
                 className="Modal"
                 overlayClassName="Overlay"
               >
-                {/* <h2 ref={subtitle => (this.subtitle = subtitle)}>Hello</h2> */}
-
-                <div id="add-event" title="Add Event">
-                  <form
-                    className="add-event-form"
-                    onSubmit={this.handleSubmitEvent}
-                  >
-                    <label htmlFor="eventAddForm_title">Title For Event</label>
-                    <Input
-                      required
-                      name="event_title-add"
-                      id="eventAddForm_title"
-                    ></Input>
-
-                    <label htmlFor="eventAddFormclient">Client</label>
-                    <select id="client-select" name="client-id" required>
-                      <option value="">Select a Client...</option>
-                      {clientDropDown}
-                    </select>
-                    {/* <Select
-                      className="react-dropdown-style"
-                      options={clientDropDown}
-                      styles={customStyles}
-                      onChange={this.getTattoos}
-                    /> */}
-
-                    {/* <label htmlFor="eventAddForm_tattoo">Tattoo</label>
-                    <select
-                      id="tattoo-select"
-                      name="tattoo-id"
-                      //onChange={this.getTattoos}
-                      required
-                    >
-                      <option value="">Select a Tattoo...</option>
-                      {this.selectTattoo()}
-                    </select> */}
-
-                    <label htmlFor="eventAddForm_start">Start Time</label>
-                    <Input
-                      type="time"
-                      required
-                      name="event_start-add"
-                      id="eventEditForm_start"
-                    ></Input>
-
-                    <Button className="modal-btn" onClick={this.closeModal}>
-                      Close
-                    </Button>
-                    <Button className="modal-btn" type="submit">
-                      Submit
-                    </Button>
-                  </form>
-                </div>
+                {content}
               </Modal>
             </div>
           </div>
@@ -421,4 +502,4 @@ class UserHome extends Component {
   }
 }
 
-export default UserHome;
+export default withRouter(UserHome);
