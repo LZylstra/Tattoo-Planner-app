@@ -15,6 +15,7 @@ import listPlugin from "@fullcalendar/list";
 import { Link, withRouter } from "react-router-dom";
 import { Button, Input, Textarea } from "../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
 import Modal from "react-modal";
 import Select from "react-select";
 import "./UserHome.css";
@@ -216,7 +217,33 @@ class UserHome extends Component {
     e.preventDefault();
     const clientId = e.target["client-id"].value;
     this.setClientId(clientId);
-    console.log(`${e.target["event_start-add"].value}:00`);
+
+    // const time = moment(e.target["event_start-add"].value);
+    // const date = moment(this.state.dateClicked);
+
+    // let dateArr = time.split(":");
+    // let hour = parseInt(dateArr[0]);
+    // let minute = parseInt(dateArr[1]);
+
+    // console.log(hour);
+    // console.log(minute);
+    // const date = this.state.dateClicked;
+    // let dateTime = date.set({
+    //   hour: hour,
+    //   minute: minute,
+    //   second: 0,
+    //   millisecond: 0
+    // });
+    // console.log(dateTime);
+    // let day = moment(date);
+    //console.log(dateTime.format("YYYY-MM-DD HH:mm"));
+    // console.log(datetime);
+    // const newdate = Date.parse(date);
+    // console.log(newdate);
+    // const utcDate1 = new Date(Date.UTC(date));
+    // console.log(utcDate1);
+    // console.log(this.state.dateClicked);
+    //console.log(`${e.target["event_start-add"].value}:00`);
     //console.log(this.state.tattooList);
     const newEvent = {
       title: e.target["event_title-add"].value,
@@ -229,7 +256,7 @@ class UserHome extends Component {
       all_day: true,
       tattoo: 1 //not currently getting the tattoo id from input !! NEED TO FIX
     };
-    //console.log(newEvent);
+    console.log(newEvent);
 
     EventApiService.postEvent(newEvent)
       .then(this.context.addEvent)
@@ -364,7 +391,7 @@ class UserHome extends Component {
   modifyEventList(oldList) {
     let newList = [];
     for (let i = 0; i < oldList.length; i++) {
-      console.log(oldList[i].eventdate);
+      // console.log(oldList[i].eventdate);
       let newObj = {
         title: oldList[i].title,
         start: oldList[i].eventdate
