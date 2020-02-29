@@ -470,13 +470,13 @@ class UserHome extends Component {
           </div>
         </div>
         <div className="icon-row">
-          <Link to="/clients">
+          <Link className="home-icon-btn" to="/clients">
             <Icon title="Clients" picture={clientIcon} />
           </Link>
-          <Link to="/ledger">
+          <Link to="/ledger" className="home-icon-btn">
             <Icon title="Ledger" picture={financialIcon} />
           </Link>
-          <Link to="/tattoos">
+          <Link to="/tattoos" className="home-icon-btn">
             <Icon title="Tattoos" picture={tattooIcon} />
           </Link>
         </div>

@@ -14,11 +14,11 @@ class LandingPage extends Component {
     return (
       <div className="landing_page">
         <p className="app_description">
-          Tattoo Planner is a tattoo artists best friend and virtual assistant.
-          Artists work hard and Tattoo Planner is there to make things a little
-          easier. It helps them stay organized by giving them the ability to
-          create and view schedules as well as manage client and tattoo
-          information.
+          Tattoo Task Tracker is a tattoo artists best friend and virtual
+          assistant. Artists work hard and Tattoo Task Tracker is there to make
+          things a little easier. It helps them stay organized by giving them
+          the ability to create and view schedules as well as manage client and
+          tattoo information.
         </p>
         <img id="demo_pic" src={coverImg} alt="demo of app" />
         {/* <img id="mobile_pic" src={mobileImg} alt="mobile demo" /> */}
