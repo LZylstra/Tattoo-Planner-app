@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import CircleButton from "./CircleButton";
+import { Rating } from "./Rating";
 
-describe(`CircleButton component`, () => {
+describe(`Rating component`, () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<CircleButton />, div);
+    ReactDOM.render(<Rating />, div);
 
     ReactDOM.unmountComponentAtNode(div);
   });

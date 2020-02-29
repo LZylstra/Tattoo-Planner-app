@@ -37,6 +37,8 @@ export function Rating({ rating, type }) {
         ))}
       </span>
     );
+  } else {
+    return <div>Error: Type not found</div>;
   }
 }
 

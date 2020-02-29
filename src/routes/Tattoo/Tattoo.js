@@ -29,7 +29,7 @@ class Tattoo extends Component {
   }
 
   componentWillUnmount() {
-    this.context.clearTattoo();
+    this.context.clearTattoos();
     this.context.clearTattoosClient();
   }
 

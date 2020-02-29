@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import CircleButton from "./CircleButton";
+import OptionsHeader from "./OptionsHeader";
 
-describe(`CircleButton component`, () => {
+describe(`CptionsHeader component`, () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<CircleButton />, div);
+    ReactDOM.render(<OptionsHeader />, div);
 
     ReactDOM.unmountComponentAtNode(div);
   });

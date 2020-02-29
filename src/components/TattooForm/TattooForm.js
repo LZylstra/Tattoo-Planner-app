@@ -25,7 +25,7 @@ export default class TattooForm extends Component {
     //   .catch(this.context.setError);
   }
   componentWillUnmount() {
-    this.context.clearTattoo();
+    this.context.clearTattoos();
   }
 
   handleSubmitTattoo = ev => {

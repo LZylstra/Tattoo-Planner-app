@@ -12,7 +12,7 @@ import Header from "../Header/Header";
 import PrivateRoute from "../../utils/PrivateRoute";
 import PublicOnlyRoute from "../../utils/PublicOnlyRoute";
 import ClientForm from "../../components/ClientForm/ClientForm";
-import TattooForm from "../../components/TattooForm/TattooFrom";
+import TattooForm from "../TattooForm/TattooForm";
 import Login from "../../routes/Login/Login";
 import Registration from "../../routes/Registration/Registration";
 // import { HeaderProvider } from "../../contexts/HeaderContext";

@@ -173,7 +173,7 @@ class UserHome extends Component {
   handleDeleteEvent = e => {
     e.preventDefault();
     let eventId = this.state.event.id;
-    //console.log("delete");
+    console.log("delete");
     //console.log(eventId);
 
     EventApiService.deleteEvent(eventId);
@@ -185,7 +185,7 @@ class UserHome extends Component {
   handleDateClick = arg => {
     this.setDateClicked(arg.dateStr);
     this.setView("add");
-    // console.log(this.state.dateClicked);
+    console.log(this.state.dateClicked);
 
     this.openModal();
   };
@@ -199,11 +199,22 @@ class UserHome extends Component {
     e.preventDefault();
     const clientId = e.target["client-id"].value;
     this.setClientId(clientId);
+    console.log(this.state.dateClicked);
+    let date = new Date(this.state.dateClicked);
+    date = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+    console.log(date);
+    date.setHours(
+      e.target["event_start-add"].value.split(":")[0],
+      e.target["event_start-add"].value.split(":")[1],
+      0,
+      0
+    );
 
+    console.log(date);
     const newEvent = {
       title: e.target["event_title-add"].value,
       description: e.target["event_desc-add"].value,
-      eventdate: this.state.dateClicked,
+      eventdate: date,
       start_time: e.target["event_start-add"].value,
       // end_time,
       in_person: true,
@@ -346,7 +357,7 @@ class UserHome extends Component {
   modifyEventList(oldList) {
     let newList = [];
     for (let i = 0; i < oldList.length; i++) {
-      // console.log(oldList[i].eventdate);
+      //  console.log(oldList[i].eventdate);
       let newObj = {
         title: oldList[i].title,
         start: oldList[i].eventdate
@@ -447,7 +458,7 @@ class UserHome extends Component {
               dateClick={this.handleDateClick}
               selectable={true}
               eventClick={this.handleEventClick}
-              editable={true}
+              //editable={true}
               eventLimit={true} // when too many events in a day, show the popover
               selectMirror={true}
               unselectAuto={true}
