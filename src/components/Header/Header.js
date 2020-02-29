@@ -109,7 +109,7 @@ export default class Header extends Component {
         <h1>
           <Link id="app-name" to="/">
             {" "}
-            Tattoo Planner{" "}
+            Tattoo Task Tracker{" "}
           </Link>
         </h1>
         {TokenService.hasAuthToken()
