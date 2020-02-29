@@ -48,9 +48,7 @@ export class ClientProvider extends Component {
   };
 
   setClientTattoos = tattoo => {
-    //console.log({ tattoo });
     this.setState({ tattoo });
-    //  console.log(this.state.tattoo);
   };
 
   addClientTattoo = tattoo => {

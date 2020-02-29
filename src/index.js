@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faPlus,
+  faSpinner,
   faTrashAlt,
   faTimesCircle,
   faWindowClose,
@@ -25,6 +26,7 @@ import "./index.css";
 
 library.add(
   faPlus,
+  faSpinner,
   faWindowClose,
   faTimesCircle,
   farStar,

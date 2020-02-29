@@ -7,30 +7,24 @@ const ClientApiService = {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
-    }).then(
-      res => {
-        if (!res.ok) {
-          res.json().then(e => Promise.reject(e));
-        }
-        // console.log(res.json());
-        return res.json();
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
       }
-      //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+
+      return res.json();
+    });
   },
   getClient(clientId) {
     return fetch(`${config.API_ENDPOINT}/clients/${clientId}`, {
       headers: { authorization: `bearer ${TokenService.getAuthToken()}` }
-    }).then(
-      res => {
-        if (!res.ok) {
-          res.json().then(e => Promise.reject(e));
-        }
-        // console.log(res.json());
-        return res.json();
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
       }
-      //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+
+      return res.json();
+    });
   },
   getClientTattoos(clientId) {
     return fetch(`${config.API_ENDPOINT}/clients/${clientId}/tattoos`, {
@@ -41,7 +35,7 @@ const ClientApiService = {
       if (!res.ok) {
         res.json().then(e => Promise.reject(e));
       }
-      //console.log(res.json());
+
       return res.json();
     });
   },
@@ -64,7 +58,7 @@ const ClientApiService = {
       if (!res.ok) {
         res.json().then(e => Promise.reject(e));
       }
-      // console.log(res.json());
+
       return res.json();
     });
   },
@@ -77,7 +71,6 @@ const ClientApiService = {
     })
       .then(res => {
         if (!res.ok) return res.json().then(e => Promise.reject(e));
-        // return res.json();
       })
       .catch(error => {
         console.error({ error });

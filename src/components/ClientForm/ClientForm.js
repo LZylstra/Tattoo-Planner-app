@@ -23,7 +23,6 @@ export default class ClientForm extends Component {
       client_rating: 0,
       artist: 2 //defaults to demo user for now
     };
-    //console.log(newClient);
 
     ClientApiService.postClient(newClient).then(
       this.props.history.push(`/clients`)

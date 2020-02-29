@@ -53,7 +53,7 @@ export default class TattooForm extends Component {
 
     // console.log(this.context);
     if (allClients === undefined) {
-      console.log("loading");
+      // console.log("loading");
     } else {
       clientDropDown = allClients.map(client => (
         <option key={client.id} value={client.id}>

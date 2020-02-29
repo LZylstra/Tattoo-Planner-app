@@ -45,7 +45,6 @@ export class TattoosProvider extends Component {
 
   setTattoo = tattoo => {
     this.setState({ tattoo });
-    // console.log(this.state.tattoo);
   };
 
   clearTattoo = () => {
@@ -53,20 +52,15 @@ export class TattoosProvider extends Component {
   };
 
   setTattoosClient = client => {
-    //console.log({ tattoo });
     this.setState({ client });
-    // console.log(this.state.client);
   };
 
   clearTattoosClient = () => {
     this.setTattoosClient(nullClient);
   };
-  //   addClientTattoo = tattoo => {
-  //     this.setTattoos([...this.state.tattoos, tattoo]);
-  //   };
+
   setAllClients = allClients => {
     this.setState({ allClients });
-    // console.log(this.state.allClients);
   };
 
   addTattoo = tattoo => {

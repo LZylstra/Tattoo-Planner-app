@@ -18,7 +18,6 @@ export class TattooListProvider extends Component {
 
   setTattooList = tattooList => {
     this.setState({ tattooList });
-    // console.log(`goes into setTattooList ${this.state.tattooList}`);
   };
 
   setError = error => {
@@ -35,8 +34,6 @@ export class TattooListProvider extends Component {
   };
 
   render() {
-    // console.log("goes in context render");
-    // console.log(this.state);
     const valueData = {
       tattooList: this.state.tattooList,
       error: this.state.error,

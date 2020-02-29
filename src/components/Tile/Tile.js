@@ -19,14 +19,12 @@ class Tile extends Component {
 
   handleClickDeleteTattoo = e => {
     const { history } = this.props;
-    // const destination = this.props.location.pathname;
-    // const clientId = this.props.client.id;
     const tattooId = this.props.tattoo.id;
     e.preventDefault();
     TattooApiService.deleteTattoo(tattooId);
 
     this.context.clearTattoo();
-    //refreshes the whole page, ideally would like to not do this
+    //refreshes the whole page
     history.go();
   };
   render() {
@@ -34,7 +32,6 @@ class Tile extends Component {
 
     const tileType = this.props.type;
 
-    // console.log(`goes into tile ${tattoo}`);
     if (tileType === "reference") {
       return (
         <div className="tile">

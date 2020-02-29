@@ -50,17 +50,14 @@ export class EventProvider extends Component {
 
   setEventList = eventList => {
     this.setState({ eventList });
-    // console.log(this.state.eventList);
   };
 
   addEvent = event => {
     this.setEventList([...this.state.eventList, event]);
-    // console.log(this.state.eventList);
   };
 
   setClientList = clientList => {
     this.setState({ clientList });
-    // console.log(this.state.clientList);
   };
 
   setTattooList = tattooList => {

@@ -7,30 +7,24 @@ const EventApiService = {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
-    }).then(
-      res => {
-        if (!res.ok) {
-          res.json().then(e => Promise.reject(e));
-        }
-        // console.log(res.json());
-        return res.json();
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
       }
-      //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+
+      return res.json();
+    });
   },
   getEvent(eventId) {
     return fetch(`${config.API_ENDPOINT}/events/${eventId}`, {
       headers: { authorization: `bearer ${TokenService.getAuthToken()}` }
-    }).then(
-      res => {
-        if (!res.ok) {
-          res.json().then(e => Promise.reject(e));
-        }
-        //console.log(res.json());
-        return res.json();
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
       }
-      //   !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+
+      return res.json();
+    });
   },
   postEvent(newEvent) {
     const {
@@ -65,7 +59,7 @@ const EventApiService = {
       if (!res.ok) {
         res.json().then(e => Promise.reject(e));
       }
-      //console.log(res.json());
+
       return res.json();
     });
   },
@@ -78,7 +72,6 @@ const EventApiService = {
     })
       .then(res => {
         if (!res.ok) return res.json().then(e => Promise.reject(e));
-        // return res.json();
       })
       .catch(error => {
         console.error({ error });
@@ -93,7 +86,7 @@ const EventApiService = {
       if (!res.ok) {
         res.json().then(e => Promise.reject(e));
       }
-      // console.log(res.json());
+
       return res.json();
     });
   },
@@ -106,7 +99,7 @@ const EventApiService = {
       if (!res.ok) {
         res.json().then(e => Promise.reject(e));
       }
-      // console.log(res.json());
+
       return res.json();
     });
   }

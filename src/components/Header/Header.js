@@ -37,7 +37,7 @@ export default class Header extends Component {
   };
 
   renderLogoutLink() {
-    console.log("render logged in");
+    // console.log("render logged in");
     return (
       <div className="Header_logged-in">
         <Link className="menu-icon" to="/clients">
@@ -69,7 +69,7 @@ export default class Header extends Component {
   }
 
   renderLoginLink() {
-    console.log(" render logged out");
+    // console.log(" render logged out");
 
     return (
       <div className="Header_not-logged-in">
@@ -91,10 +91,10 @@ export default class Header extends Component {
   checkLoggedIn() {
     // console.log("it ran");
     if (TokenService.hasAuthToken()) {
-      console.log("auth serv is logged in");
+      // console.log("auth serv is logged in");
       return this.setState({ isLoggedIn: true });
     } else {
-      console.log("auth serv not logged in");
+      // console.log("auth serv not logged in");
       return this.setState({ isLoggedIn: false });
     }
   }
@@ -103,7 +103,7 @@ export default class Header extends Component {
   // }
   render() {
     let { isLoggedIn } = this.state;
-    console.log(isLoggedIn);
+    //console.log(isLoggedIn);
     return (
       <nav className="Header">
         <h1>
