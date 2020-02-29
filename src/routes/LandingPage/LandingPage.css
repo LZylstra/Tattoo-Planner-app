@@ -15,8 +15,14 @@
   padding: 15px;
   margin: auto;
   display: block;
+  border: 5px ridge white;
+  box-shadow: 10px 10px 20px black;
 }
-
+#demo_pic::after {
+}
+#mobile_pic {
+  display: none;
+}
 /* unvisited link */
 a:link {
   color: #14ffec;
@@ -64,5 +70,21 @@ a:active {
 
   #demo_pic {
     padding-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #mobile_pic {
+    display: inline-block;
+    position: relative;
+    bottom: 500px;
+    right: 100px;
+  }
+}
+
+@media screen and (min-width: 1070px) {
+  #mobile_pic {
+    bottom: 600px;
+    left: 650px;
   }
 }

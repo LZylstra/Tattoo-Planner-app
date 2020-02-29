@@ -4,6 +4,9 @@ import TattooContext from "../../contexts/TattooContext";
 import { Rating } from "../../components/Rating/Rating";
 import "./Tattoo.css";
 import TattooApiService from "../../services/tattoo-api-service";
+import ref1img from "../../img/sunflowerref.jpg";
+import ref2img from "../../img/sunflowerref2.jpg";
+import ref3img from "../../img/sunflowerref3.png";
 //import ClientApiService from "../../services/client-api-service";
 
 class Tattoo extends Component {
@@ -107,9 +110,9 @@ class Tattoo extends Component {
           </div>
         </div>*/}
         <div className="references">
-          <Tile type="reference" line1="Art Reference 1" />
-          <Tile type="reference" line1="Art Reference 2" />
-          <Tile type="reference" line1="Art Reference3" />
+          <Tile type="reference" line1="Real Sunflower" img={ref1img} />
+          <Tile type="reference" line1="Stylized Sunflower" img={ref2img} />
+          <Tile type="reference" line1="Multiple Sunflowers" img={ref3img} />
         </div>
       </div>
     );

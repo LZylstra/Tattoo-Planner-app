@@ -218,33 +218,6 @@ class UserHome extends Component {
     const clientId = e.target["client-id"].value;
     this.setClientId(clientId);
 
-    // const time = moment(e.target["event_start-add"].value);
-    // const date = moment(this.state.dateClicked);
-
-    // let dateArr = time.split(":");
-    // let hour = parseInt(dateArr[0]);
-    // let minute = parseInt(dateArr[1]);
-
-    // console.log(hour);
-    // console.log(minute);
-    // const date = this.state.dateClicked;
-    // let dateTime = date.set({
-    //   hour: hour,
-    //   minute: minute,
-    //   second: 0,
-    //   millisecond: 0
-    // });
-    // console.log(dateTime);
-    // let day = moment(date);
-    //console.log(dateTime.format("YYYY-MM-DD HH:mm"));
-    // console.log(datetime);
-    // const newdate = Date.parse(date);
-    // console.log(newdate);
-    // const utcDate1 = new Date(Date.UTC(date));
-    // console.log(utcDate1);
-    // console.log(this.state.dateClicked);
-    //console.log(`${e.target["event_start-add"].value}:00`);
-    //console.log(this.state.tattooList);
     const newEvent = {
       title: e.target["event_title-add"].value,
       description: e.target["event_desc-add"].value,
@@ -256,7 +229,7 @@ class UserHome extends Component {
       all_day: true,
       tattoo: 1 //not currently getting the tattoo id from input !! NEED TO FIX
     };
-    console.log(newEvent);
+    //  console.log(newEvent);
 
     EventApiService.postEvent(newEvent)
       .then(this.context.addEvent)

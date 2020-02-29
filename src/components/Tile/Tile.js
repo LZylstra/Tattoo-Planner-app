@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TattooContext from "../../contexts/TattooContext";
 import TattooApiService from "../../services/tattoo-api-service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import "./Tile.css";
 
 class Tile extends Component {
@@ -45,7 +46,8 @@ class Tile extends Component {
             <FontAwesomeIcon icon="trash-alt" />{" "}
           </button>
           <div className="inner">
-            <img src="https://via.placeholder.com/250x150" alt="preview" />
+            {/* <img src="https://via.placeholder.com/250x150" alt="preview" /> */}
+            <img src={this.props.img} alt="preview" />
             <h4>{this.props.line1}</h4>
           </div>
         </div>

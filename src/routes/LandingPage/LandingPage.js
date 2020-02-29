@@ -6,7 +6,8 @@ import financialIcon from "../../img/financial-icon.png";
 import clientIcon from "../../img/client-icon.png";
 import tattooIcon from "../../img/tattoo-icon.png";
 import calendarIcon from "../../img/calendar-icon.png";
-import coverImg from "../../img/temporary-cover-img.png";
+import coverImg from "../../img/cover-img.png";
+import mobileImg from "../../img/demo-mobile.png";
 
 class LandingPage extends Component {
   render() {
@@ -20,6 +21,7 @@ class LandingPage extends Component {
           information.
         </p>
         <img id="demo_pic" src={coverImg} alt="demo of app" />
+        {/* <img id="mobile_pic" src={mobileImg} alt="mobile demo" /> */}
         <Icon
           title="Financials"
           description="Keep track of all of the money related information you need. Track quotes, hourly rates, deposits and more"
