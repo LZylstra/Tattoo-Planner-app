@@ -47,7 +47,7 @@ class Tile extends Component {
           </button>
           <div className="inner">
             {/* <img src="https://via.placeholder.com/250x150" alt="preview" /> */}
-            <img src={this.props.img} alt="preview" />
+            <img id="ref-img" src={this.props.img} alt="preview" />
             <h4>{this.props.line1}</h4>
           </div>
         </div>

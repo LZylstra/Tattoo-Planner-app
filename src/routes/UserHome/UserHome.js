@@ -188,26 +188,8 @@ class UserHome extends Component {
     // console.log(this.state.dateClicked);
 
     this.openModal();
-
-    //console.log("goes in date clicked");
-    // console.log(`date clicked: ${arg.dateStr}`);
-    //this.setDateClicked(true);
-
-    //this.renderAddEvent();
-    //if there is no event open the create event modal
-    //if there is events is there a way to click just them? i listener for that?
-
-    // if (alert("Would you like to add an event to " + arg.dateStr + " ?")) {
-    //   this.setState({
-    //     // add new event data
-    //     calendarEvents: this.state.calendarEvents.concat({
-    //       // creates a new array
-    //       title: "New Event",
-    //       start: arg.date,
-    //       allDay: arg.allDay
-    //     })
-    //   });
   };
+
   // getTattoos() {
   //   console.log("goes in here");
   //   let cid = this.state.clientId;
