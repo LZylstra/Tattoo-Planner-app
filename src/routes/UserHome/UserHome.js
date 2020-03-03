@@ -138,11 +138,8 @@ class UserHome extends Component {
   };
 
   getTattoos = e => {
-    // console.log("goes in here");
-
     let cid = e.nativeEvent.target.selectedIndex;
     let clientId = e.nativeEvent.target[cid].value;
-    //  console.log(clientId);
     ClientApiService.getClientTattoos(clientId).then(
       this.context.setTattooList
     );
@@ -150,25 +147,25 @@ class UserHome extends Component {
 
   selectTattoo() {
     let { tattooList } = this.context;
-    // let tattoos = this.state.tattooList;
-    //  console.log(tattooList);
     let content = tattooList.map(tattoo => (
       <option key={tattoo.id} value={tattoo.id}>
         {tattoo.title}
       </option>
     ));
-    // console.log(content);
+
     return content;
   }
 
   handleSubmitEvent = e => {
     e.preventDefault();
     const clientId = e.target["client-id"].value;
+    const tattooId = e.target["tattoo-id"].value;
+    // console.log(tattooId);
     this.setClientId(clientId);
-    // console.log(this.state.dateClicked);
+
     let date = new Date(this.state.dateClicked);
     date = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
-    // console.log(date);
+
     date.setHours(
       e.target["event_start-add"].value.split(":")[0],
       e.target["event_start-add"].value.split(":")[1],
@@ -176,7 +173,6 @@ class UserHome extends Component {
       0
     );
 
-    //console.log(date);
     const newEvent = {
       title: e.target["event_title-add"].value,
       description: e.target["event_desc-add"].value,
@@ -186,7 +182,7 @@ class UserHome extends Component {
       in_person: true,
       curr_status: "New",
       all_day: true,
-      tattoo: 1 //not currently getting the tattoo id from input !! NEED TO FIX
+      tattoo: tattooId
     };
     //  console.log(newEvent);
 
@@ -200,9 +196,6 @@ class UserHome extends Component {
       .then(this.closeModal());
   };
 
-  //this is the modal to edit events
-  //would like to have drop down of clients and then once a client is selected
-  // a drop down of tattoos
   renderAddEvent() {
     const { error } = this.context;
     const { clientList = [] } = this.context;
@@ -217,11 +210,6 @@ class UserHome extends Component {
         </option>
       ));
     }
-
-    //react-select
-    // clientDropDown = clientList.map(client => [
-    //   { label: `${client.full_name}`, value: `${client.id}` }
-    // ]);
 
     return (
       <div id="add-event" title="Add Event">
@@ -271,26 +259,8 @@ class UserHome extends Component {
   }
 
   renderViewEventDetails() {
-    //use the url function of this api to display different things based on what's been clicked
-    //const { event } = this.context;
-    // const { clientList = [], eventList = [] } = this.context;
-    // //sconsole.log(eventList);
-    // let clickedEventTitle = this.state.event;
-    // let clickedEvent;
-    // // console.log(this.state.event);
-    // // if (eventList === undefined) {
-    // //   console.log("loading");
-    // // } else {
-    // for (let i = 0; i < eventList.length; i++) {
-    //   if (eventList[i].title === clickedEventTitle) {
-    //     clickedEvent = eventList[i];
-    //     this.context.setEvent(clickedEvent);
-    //     break;
-    //   }
-    // }
-    // }
     let clickedEvent = this.state.event;
-    console.log(clickedEvent);
+    // console.log(clickedEvent);
     //console.log(this.state.eventId);
     if (clickedEvent === null) {
       console.log("loading");
@@ -317,7 +287,6 @@ class UserHome extends Component {
   modifyEventList(oldList) {
     let newList = [];
     for (let i = 0; i < oldList.length; i++) {
-      //  console.log(oldList[i].eventdate);
       let newObj = {
         title: oldList[i].title,
         start: oldList[i].eventdate
@@ -325,19 +294,17 @@ class UserHome extends Component {
 
       newList.push(newObj);
     }
-    //  console.log(newList);
+
     return newList;
   }
 
   handleEventClick(info) {
-    // console.log("event clicked");
-    // console.log(info.event.url);
     if (info.event.title) {
       this.setView("edit");
       this.setEventTitle(info.event.title);
     }
     const { eventList = [] } = this.context;
-    //sconsole.log(eventList);
+
     let clickedEventTitle = this.state.eventTitle;
     let clickedEvent;
     // console.log(this.state.event);
@@ -348,7 +315,7 @@ class UserHome extends Component {
       if (eventList[i].title === clickedEventTitle) {
         clickedEvent = eventList[i];
         this.setEvent(clickedEvent);
-        // console.log(this.state.setEvent);
+
         break;
       }
     }
@@ -356,30 +323,6 @@ class UserHome extends Component {
   }
 
   render() {
-    // const { clientList = [] } = this.context;
-    // //  console.log(clientList);
-    // let clientDropDown;
-    // if (clientList === undefined) {
-    //   console.log("loading");
-    // } else {
-    //   clientDropDown = clientList.map(client => (
-    //     <option key={client.id} value={client.id}>
-    //       {client.full_name}
-    //     </option>
-    //   ));
-
-    //react-select
-    // clientDropDown = clientList.map(client => [
-    //   { label: `${client.full_name}`, value: `${client.id}` }
-    // ]);
-    //}
-    // const currentList = this.state.eventList;
-    // console.log(currentList);
-    // const eventContent;
-    // if(this.state.dateClicked){
-    //   eventContent = this.renderAddEvent
-    //   this.setDateClicked(false)
-    // }
     let content;
     if (this.state.view === "add") {
       content = this.renderAddEvent();
