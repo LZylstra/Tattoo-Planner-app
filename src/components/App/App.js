@@ -43,6 +43,7 @@ class App extends Component {
     // const value = {
     //   isLoggedIn: this.state.isLoggedIn
     // };
+    // console.log(this.state.isLoggedIn);
     return (
       <main className="App">
         <div className="App">

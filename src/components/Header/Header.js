@@ -81,9 +81,6 @@ export default class Header extends Component {
           Log in
           <FontAwesomeIcon icon="caret-down" />
         </Link>
-        <Link className="menu-item" onClick={this.handleLogoutClick} to="/">
-          Temp Logout
-        </Link>
       </div>
     );
   }
@@ -91,18 +88,18 @@ export default class Header extends Component {
   checkLoggedIn() {
     // console.log("it ran");
     if (TokenService.hasAuthToken()) {
-      // console.log("auth serv is logged in");
-      return this.setState({ isLoggedIn: true });
+      console.log("auth serv is logged in");
+      return true;
     } else {
-      // console.log("auth serv not logged in");
-      return this.setState({ isLoggedIn: false });
+      console.log("auth serv not logged in");
+      return false;
     }
   }
   // componentDidUpdate() {
   //   this.checkLoggedIn();
   // }
   render() {
-    let { isLoggedIn } = this.state;
+    //  let { isLoggedIn } = this.state;
     //console.log(isLoggedIn);
     return (
       <nav className="Header">
@@ -112,7 +109,7 @@ export default class Header extends Component {
             Tattoo Task Tracker{" "}
           </Link>
         </h1>
-        {TokenService.hasAuthToken()
+        {this.checkLoggedIn()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}
         {/* {isLoggedIn ? this.renderLogoutLink() : this.renderLoginLink()} */}

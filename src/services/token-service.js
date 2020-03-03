@@ -15,10 +15,10 @@ const TokenService = {
   },
   makeBasicAuthToken(userName, password) {
     return window.btoa(`${userName}:${password}`);
-  },
-  getUserId() {
-    return;
   }
+  // getUserId() {
+  //   return;
+  // }
 };
 
 export default TokenService;
