@@ -15,15 +15,15 @@ import listPlugin from "@fullcalendar/list";
 import { Link, withRouter } from "react-router-dom";
 import { Button, Input, Textarea } from "../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import moment from "moment";
+//import moment from "moment";
 import Modal from "react-modal";
-import Select from "react-select";
+//import Select from "react-select";
 import "./UserHome.css";
 
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import { EventApi } from "@fullcalendar/core";
+//import { EventApi } from "@fullcalendar/core";
 //import { Calendar } from "@fullcalendar/core";
 Modal.setAppElement(document.getElementById("root"));
 

@@ -22,6 +22,7 @@ export default class Header extends Component {
 
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
+    TokenService.clearUser();
     this.updateLoggedIn(false);
     // this.props.updateLogin(false);
     // this.context.clearLoggedIn();
@@ -86,18 +87,13 @@ export default class Header extends Component {
   }
 
   checkLoggedIn() {
-    // console.log("it ran");
     if (TokenService.hasAuthToken()) {
-      console.log("auth serv is logged in");
       return true;
     } else {
-      console.log("auth serv not logged in");
       return false;
     }
   }
-  // componentDidUpdate() {
-  //   this.checkLoggedIn();
-  // }
+
   render() {
     //  let { isLoggedIn } = this.state;
     //console.log(isLoggedIn);

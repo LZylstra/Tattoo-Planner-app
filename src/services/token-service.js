@@ -1,4 +1,5 @@
 import config from "../config";
+import AuthApiService from "./auth-api-service";
 
 const TokenService = {
   saveAuthToken(token) {
@@ -15,6 +16,20 @@ const TokenService = {
   },
   makeBasicAuthToken(userName, password) {
     return window.btoa(`${userName}:${password}`);
+  },
+  saveUserId(userId) {
+    // AuthApiService.getUser(userName).then(user => {
+    //   console.log(user.id);
+    //   window.sessionStorage.setItem(config.USER, user);
+    // });
+    window.sessionStorage.setItem(config.USER, userId);
+    //.then(this.context.setUser);
+  },
+  getUser() {
+    return window.sessionStorage.getItem(config.USER);
+  },
+  clearUser() {
+    window.sessionStorage.removeItem(config.USER);
   }
   // getUserId() {
   //   return;

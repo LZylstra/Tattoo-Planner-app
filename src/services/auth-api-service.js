@@ -8,9 +8,13 @@ const AuthApiService = {
         "content-type": "application/json"
       },
       body: JSON.stringify(credentials)
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
+      }
+      //console.log(res.json());
+      return res.json();
+    });
   },
   postUser(user) {
     return fetch(`${config.API_ENDPOINT}/users`, {
@@ -23,14 +27,17 @@ const AuthApiService = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
   },
-  getUserId(user) {
+  getUser(user) {
     return fetch(`${config.API_ENDPOINT}/users/${user}`, {
       headers: {
         "content-type": "application/json"
       }
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+    }).then(res => {
+      if (!res.ok) {
+        res.json().then(e => Promise.reject(e));
+      }
+      return res.json();
+    });
   }
 };
 

@@ -3,7 +3,9 @@ import config from "../config";
 
 const ClientApiService = {
   getClients() {
-    return fetch(`${config.API_ENDPOINT}/clients`, {
+    let user = TokenService.getUser();
+    // console.log(user);
+    return fetch(`${config.API_ENDPOINT}/clients/artist/${user}`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
@@ -41,6 +43,7 @@ const ClientApiService = {
   },
   postClient(newClient) {
     const { full_name, phone, email, client_rating, artist } = newClient;
+    //console.log(artist);
     return fetch(`${config.API_ENDPOINT}/clients`, {
       method: "POST",
       headers: {
@@ -54,13 +57,17 @@ const ClientApiService = {
         client_rating: client_rating,
         artist: artist
       })
-    }).then(res => {
-      if (!res.ok) {
-        res.json().then(e => Promise.reject(e));
-      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          res.json().then(e => Promise.reject(e));
+        }
 
-      return res.json();
-    });
+        return res.json();
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   },
   deleteClient(clientId) {
     fetch(`${config.API_ENDPOINT}/clients/${clientId}`, {

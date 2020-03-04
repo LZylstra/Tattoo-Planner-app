@@ -23,6 +23,7 @@ import { TattooListProvider } from "./contexts/TattooListContext";
 import { TattoosProvider } from "./contexts/TattooContext";
 import { EventProvider } from "./contexts/EventContext";
 import "./index.css";
+import { AllProvider } from "./contexts/AllContext";
 
 library.add(
   faPlus,
@@ -39,17 +40,19 @@ library.add(
 
 ReactDOM.render(
   <BrowserRouter>
-    <EventProvider>
-      <ClientListProvider>
-        <ClientProvider>
-          <TattooListProvider>
-            <TattoosProvider>
-              <App />
-            </TattoosProvider>
-          </TattooListProvider>
-        </ClientProvider>
-      </ClientListProvider>
-    </EventProvider>
+    <AllProvider>
+      <EventProvider>
+        <ClientListProvider>
+          <ClientProvider>
+            <TattooListProvider>
+              <TattoosProvider>
+                <App />
+              </TattoosProvider>
+            </TattooListProvider>
+          </ClientProvider>
+        </ClientListProvider>
+      </EventProvider>
+    </AllProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

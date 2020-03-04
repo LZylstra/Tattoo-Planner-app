@@ -2,16 +2,20 @@ import React, { Component } from "react";
 import OptionsHeader from "../../components/OptionsHeader/OptionsHeader";
 import Row from "../../components/Row/Row";
 import ClientListContext from "../../contexts/ClientListContext";
+//import AllContext from "../../contexts/AllContext";
 import ClientApiService from "../../services/client-api-service";
 import "./ClientList.css";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import TokenService from "../../services/token-service";
 
 class ClientList extends Component {
   static contextType = ClientListContext;
 
   componentDidMount() {
+    //  let user = TokenService.getUser();
+    //  console.log(user);
     this.context.clearError();
     ClientApiService.getClients()
       .then(this.context.setClientList)
