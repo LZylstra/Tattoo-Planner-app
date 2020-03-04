@@ -20,10 +20,11 @@ class Tile extends Component {
   handleClickDeleteTattoo = e => {
     const { history } = this.props;
     const tattooId = this.props.tattoo.id;
+    // console.log(tattooId);
     e.preventDefault();
     TattooApiService.deleteTattoo(tattooId);
 
-    this.context.clearTattoo();
+    this.context.clearTattoos();
     //refreshes the whole page
     history.go();
   };

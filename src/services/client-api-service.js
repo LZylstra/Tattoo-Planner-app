@@ -73,7 +73,8 @@ const ClientApiService = {
     fetch(`${config.API_ENDPOINT}/clients/${clientId}`, {
       method: "DELETE",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        authorization: `bearer ${TokenService.getAuthToken()}`
       }
     })
       .then(res => {

@@ -39,7 +39,7 @@ const EventApiService = {
       all_day,
       tattoo
     } = newEvent;
-    return fetch(`${config.API_ENDPOINT}/events/`, {
+    return fetch(`${config.API_ENDPOINT}/events`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -68,7 +68,8 @@ const EventApiService = {
     fetch(`${config.API_ENDPOINT}/events/${eventId}`, {
       method: "DELETE",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        authorization: `bearer ${TokenService.getAuthToken()}`
       }
     })
       .then(res => {

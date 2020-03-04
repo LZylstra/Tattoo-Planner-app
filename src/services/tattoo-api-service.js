@@ -54,6 +54,7 @@ const TattooApiService = {
     });
   },
   postTattoo(newTattoo) {
+    let user = TokenService.getUser();
     const {
       client,
       title,
@@ -62,7 +63,7 @@ const TattooApiService = {
       curr_status,
       tattoo_rating
     } = newTattoo;
-    return fetch(`${config.API_ENDPOINT}/tattoos/`, {
+    return fetch(`${config.API_ENDPOINT}/tattoos/artist/${user}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -80,7 +81,7 @@ const TattooApiService = {
       if (!res.ok) {
         res.json().then(e => Promise.reject(e));
       }
-
+      // console.log(res.json());
       return res.json();
     });
   },
@@ -88,11 +89,16 @@ const TattooApiService = {
     fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}`, {
       method: "DELETE",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        authorization: `bearer ${TokenService.getAuthToken()}`
       }
     })
       .then(res => {
-        if (!res.ok) return res.json().then(e => Promise.reject(e));
+        if (!res.ok) {
+          res.json().then(e => Promise.reject(e));
+        }
+        // console.log(res.json());
+        return res.json();
       })
       .catch(error => {
         console.error({ error });

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Input, Required } from "../../utils/utils";
 import AuthApiService from "../../services/auth-api-service";
+import TokenService from "../../services/token-service";
 
 export default class RegistrationForm extends Component {
   static defaultProps = {
@@ -25,6 +26,8 @@ export default class RegistrationForm extends Component {
         //   nick_name.value = "";
         user_name.value = "";
         password.value = "";
+        TokenService.saveAuthToken(user.authToken);
+        TokenService.saveUserId(user.user.id);
         this.props.onRegistrationSuccess();
       })
       .catch(res => {
