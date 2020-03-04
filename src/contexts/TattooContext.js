@@ -47,7 +47,7 @@ export class TattoosProvider extends Component {
     this.setState({ tattoo });
   };
 
-  clearTattoo = () => {
+  clearTattoos = () => {
     this.setTattoo(nullTattoo);
   };
 
@@ -79,7 +79,7 @@ export class TattoosProvider extends Component {
       setError: this.setError,
       clearError: this.clearError,
       setTattoo: this.setTattoo,
-      clearTattoo: this.clearTattoo,
+      clearTattoos: this.clearTattoos,
       setTattoosClient: this.setTattoosClient,
       clearTattoosClient: this.clearTattoosClient,
       setAllClients: this.setAllClients,

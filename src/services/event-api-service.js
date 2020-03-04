@@ -3,7 +3,8 @@ import config from "../config";
 
 const EventApiService = {
   getEvents() {
-    return fetch(`${config.API_ENDPOINT}/events`, {
+    let user = TokenService.getUser();
+    return fetch(`${config.API_ENDPOINT}/events/artist/${user}`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }

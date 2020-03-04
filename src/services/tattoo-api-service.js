@@ -3,7 +3,8 @@ import config from "../config";
 
 const TattooApiService = {
   getTattoos() {
-    return fetch(`${config.API_ENDPOINT}/tattoos`, {
+    let user = TokenService.getUser();
+    return fetch(`${config.API_ENDPOINT}/tattoos/artist/${user}`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
