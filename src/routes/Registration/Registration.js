@@ -12,6 +12,7 @@ export default class Registration extends Component {
   handleRegistrationSuccess = user => {
     const { history } = this.props;
     history.push("/home");
+    this.props.history.go(0);
   };
 
   render() {
