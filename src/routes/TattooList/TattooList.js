@@ -26,6 +26,7 @@ class TattooList extends Component {
       .catch(this.context.setError);
   }
   handleDelete() {
+    console.log("handle delete in tattoo list");
     TattooApiService.getTattoos()
       .then(this.context.setTattooList)
       .catch(this.context.setError);

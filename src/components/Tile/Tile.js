@@ -39,7 +39,7 @@ class Tile extends Component {
           <button
             className="delete"
             type="button"
-            onClick={this.handleClickDelete}
+            onClick={this.handleClickDeleteReference}
           >
             <FontAwesomeIcon icon="trash-alt" />{" "}
           </button>
