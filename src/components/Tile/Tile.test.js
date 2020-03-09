@@ -1,21 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Tile from "./Tile";
+import { library } from "@fortawesome/fontawesome-svg-core";
 import { BrowserRouter } from "react-router-dom";
-import TattooContext from "../../contexts/TattooContext";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faTrashAlt);
 
 describe(`Tile component`, () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
     const props = {
-      history: {
-        push: () => {}
-      },
-      onDeleteSucess: () => {}
+      type: "Tattoo",
+      tattoo: {
+        id: "1",
+        title: "test",
+        curr_status: "Testing"
+      }
     };
     ReactDOM.render(
-      <Tile {...props} />,
-
+      <BrowserRouter>
+        <Tile {...props} />
+      </BrowserRouter>,
       div
     );
 
