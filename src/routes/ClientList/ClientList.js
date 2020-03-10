@@ -9,6 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 class ClientList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { handleDelete: {} };
+  }
   static contextType = ClientListContext;
 
   componentDidMount() {
@@ -17,9 +21,18 @@ class ClientList extends Component {
       .then(this.context.setClientList)
       .catch(this.context.setError);
   }
+
+  handleDelete() {
+    ClientApiService.getClients()
+      .then(this.context.setClientList)
+      .catch(this.context.setError);
+  }
+
   renderClients() {
     const { clientList = [] } = this.context;
-    return clientList.map(client => <Row key={client.id} client={client} />);
+    return clientList.map(client => (
+      <Row key={client.id} client={client} onDeleteSucess={this.handleDelete} />
+    ));
   }
 
   render() {

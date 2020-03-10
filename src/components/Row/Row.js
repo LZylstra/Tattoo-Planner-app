@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ClientContext from "../../contexts/ClientContext";
 
 import "./Row.css";
 import ClientApiService from "../../services/client-api-service";
@@ -10,16 +11,23 @@ class Row extends Component {
   static defaultProps = {
     history: {
       push: () => {}
-    }
+    },
+    onDeleteSucess: () => {}
   };
+
+  static contextType = ClientContext;
+
   handleClickDeleteClient = e => {
     e.preventDefault();
     const { history } = this.props;
     const clientId = this.props.client.id;
 
     ClientApiService.deleteClient(clientId);
-    history.go(0);
+
+    this.context.clearClient();
+    history.go();
   };
+
   render() {
     const { client } = this.props;
     return (

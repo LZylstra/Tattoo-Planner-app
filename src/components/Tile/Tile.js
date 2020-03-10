@@ -18,9 +18,10 @@ class Tile extends Component {
   static contextType = TattooContext;
 
   handleClickDeleteTattoo = e => {
+    e.preventDefault();
     const { history } = this.props;
     const tattooId = this.props.tattoo.id;
-    e.preventDefault();
+
     TattooApiService.deleteTattoo(tattooId);
 
     this.context.clearTattoos();
