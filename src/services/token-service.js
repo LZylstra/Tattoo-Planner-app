@@ -17,12 +17,7 @@ const TokenService = {
     return window.btoa(`${userName}:${password}`);
   },
   saveUserId(userId) {
-    // AuthApiService.getUser(userName).then(user => {
-    //   console.log(user.id);
-    //   window.sessionStorage.setItem(config.USER, user);
-    // });
     window.sessionStorage.setItem(config.USER, userId);
-    //.then(this.context.setUser);
   },
   getUser() {
     return window.sessionStorage.getItem(config.USER);
@@ -30,9 +25,6 @@ const TokenService = {
   clearUser() {
     window.sessionStorage.removeItem(config.USER);
   }
-  // getUserId() {
-  //   return;
-  // }
 };
 
 export default TokenService;

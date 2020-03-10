@@ -4,10 +4,11 @@ import TattooContext from "../../contexts/TattooContext";
 import { Rating } from "../../components/Rating/Rating";
 import "./Tattoo.css";
 import TattooApiService from "../../services/tattoo-api-service";
+
+// temporary placeholder images in use until references feature is finished
 import ref1img from "../../img/sunflowerref.jpg";
 import ref2img from "../../img/sunflowerref2.jpg";
 import ref3img from "../../img/sunflowerref3.png";
-//import ClientApiService from "../../services/client-api-service";
 
 class Tattoo extends Component {
   static defaultProps = {
@@ -52,11 +53,13 @@ class Tattoo extends Component {
           <p>Phone: {client.phone}</p>
           <p>Email: {client.email}</p>
         </div>
+        {/* future feature */}
         <div className="client-ledger">
           <p>Deposit Amount: $100</p>
           <p>Deposit Type: Cash</p>
           <p>Tattoo Quote: $300</p>
         </div>
+        {/* future feature */}
         <div className="next-date">
           <p>Next Date: 02/13/20</p>
         </div>
@@ -67,8 +70,6 @@ class Tattoo extends Component {
   render() {
     const { error, tattoo, client } = this.context;
 
-    //console.log(`main render tattoo:`);
-    // console.log(tattoo);
     let content;
     if (error) {
       content =
@@ -78,7 +79,12 @@ class Tattoo extends Component {
           <p className="red">There was an error</p>
         );
     } else if (tattoo === undefined || client === undefined) {
-      content = <div>Loading...</div>;
+      content = (
+        <div>
+          {" "}
+          <br />
+        </div>
+      );
     } else {
       content = this.renderTattoo();
     }
@@ -86,33 +92,10 @@ class Tattoo extends Component {
     return (
       <div>
         {content}
-        {/* <div>
-
-          <p className="details">Status: Planning</p>
-          <p className="details">Location of Tattoo: Hip</p>
-          <p className="tattoo-desc">
-            Description: Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua.{" "}
-          </p>
-          <div className="client-contact">
-            <h4>Sarah Smith</h4>
-            <p>Phone: 123-455-7890</p>
-            <p>Email: email@email.com</p>
-          </div>
-          <div className="client-ledger">
-            <p>Deposit Amount: $100</p>
-            <p>Deposit Type: Cash</p>
-            <p>Tattoo Quote: $300</p>
-          </div>
-          <div className="next-date">
-            <p>Next Date: 02/13/20</p>
-          </div>
-        </div>*/}
         <div className="references">
-          <Tile type="reference" line1="Real Sunflower" img={ref1img} />
-          <Tile type="reference" line1="Stylized Sunflower" img={ref2img} />
-          <Tile type="reference" line1="Multiple Sunflowers" img={ref3img} />
+          <Tile type="reference" line1="Reference 1" img={ref1img} />
+          <Tile type="reference" line1="Reference 2" img={ref2img} />
+          <Tile type="reference" line1="Reference 3" img={ref3img} />
         </div>
       </div>
     );

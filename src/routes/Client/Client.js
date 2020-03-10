@@ -17,7 +17,6 @@ class Client extends Component {
 
   componentDidMount() {
     const clientId = this.props.match.params.id;
-    //console.log(clientId);
     this.context.clearError();
     ClientApiService.getClient(clientId)
       .then(this.context.setClient)
@@ -31,7 +30,7 @@ class Client extends Component {
   }
   renderClient() {
     const { client, tattoos } = this.context;
-    // console.log(tattoos);
+
     return (
       <>
         <div className="client-header">
@@ -54,7 +53,6 @@ class Client extends Component {
 
   render() {
     const { error, client, tattoos } = this.context;
-    //  console.log(this.context);
     let content;
     if (error) {
       content =
@@ -64,8 +62,12 @@ class Client extends Component {
           <p className="red">There was an error</p>
         );
     } else if (!client.id || tattoos === undefined) {
-      //console.log(`clientid ${client.id} and tattooid ${tattoos.id}`);
-      content = <div className="loading" />;
+      content = (
+        <div>
+          {" "}
+          <br />
+        </div>
+      );
     } else {
       content = this.renderClient();
     }

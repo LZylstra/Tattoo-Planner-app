@@ -4,8 +4,9 @@
 }
 
 .ClientList_button-container {
+  padding-top: 10px;
   margin: auto;
-  width: 90px;
+  width: 60px;
 }
 
 .client-list a {

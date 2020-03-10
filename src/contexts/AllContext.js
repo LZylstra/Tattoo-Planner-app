@@ -20,9 +20,7 @@ export class AllProvider extends Component {
   };
 
   setUser = user => {
-    // console.log(user);
     this.setState({ user });
-    // console.log(this.state.user);
   };
 
   setError = error => {
@@ -39,7 +37,6 @@ export class AllProvider extends Component {
   };
 
   setClientList = clientList => {
-    // console.log({ clientList });
     this.setState({ clientList });
   };
   render() {

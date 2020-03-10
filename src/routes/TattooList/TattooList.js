@@ -22,23 +22,24 @@ class TattooList extends Component {
     this.context.clearError();
     TattooApiService.getTattoos()
       .then(this.context.setTattooList)
-      // .then(this.state.setTattooList)
       .catch(this.context.setError);
   }
   handleDelete() {
-    console.log("handle delete in tattoo list");
     TattooApiService.getTattoos()
       .then(this.context.setTattooList)
       .catch(this.context.setError);
   }
   renderTattoos() {
     const { tattooList = [] } = this.context;
-    // const stateTattoos = this.state.tattooListState;
-    // console.log(stateTattoos);
+
     if (tattooList[0] === undefined) {
-      return <div>Loading</div>;
+      return (
+        <div>
+          {" "}
+          <br />
+        </div>
+      );
     } else {
-      //  console.log(tattooList);
       return tattooList.map(tattoo => (
         <Tile
           key={tattoo.id}

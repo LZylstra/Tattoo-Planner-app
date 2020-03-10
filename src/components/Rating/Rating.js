@@ -13,8 +13,6 @@ export function Rating({ rating, type }) {
     { filled: false }
   ];
   if (rating === undefined) {
-    //  console.log("loading");
-    // return(<div><FontAwesomeIcon icon="fa-spinner"/></div>)
   } else {
     for (let i = 0; i < rating; i++) {
       stars[i].filled = true;

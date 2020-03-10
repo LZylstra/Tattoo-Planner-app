@@ -25,7 +25,9 @@ export default class ClientForm extends Component {
     let user = Number(TokenService.getUser());
 
     if (!PHONE_CHECK.test(phone)) {
-      return this.setState({ error: "Not a valid phone number" });
+      return this.setState({
+        error: "Not a valid phone number (Please use format 123-456-7890)"
+      });
     }
 
     if (!EMAIL_CHECK.test(email)) {

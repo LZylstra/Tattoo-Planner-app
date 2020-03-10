@@ -3,7 +3,6 @@ import { Button, Input, Textarea } from "../../utils/utils";
 import TattooContext from "../../contexts/TattooContext";
 import ClientApiService from "../../services/client-api-service";
 import TattooApiService from "../../services/tattoo-api-service";
-//import ClientListContext from "../../contexts/ClientListContext";
 import "./TattooForm.css";
 
 export default class TattooForm extends Component {
@@ -20,10 +19,8 @@ export default class TattooForm extends Component {
     ClientApiService.getClients()
       .then(this.context.setAllClients)
       .catch(this.context.setError);
-    // ClientApiService.getClientTattoos(clientId)
-    //   .then(this.context.setClientTattoos)
-    //   .catch(this.context.setError);
   }
+
   componentWillUnmount() {
     this.context.clearTattoos();
   }
@@ -39,11 +36,10 @@ export default class TattooForm extends Component {
       curr_status: "New",
       tattoo_rating: 0
     };
-    //console.log(newTattoo);
 
-    TattooApiService.postTattoo(newTattoo)
-      //.then(this.context.addTattoo)
-      .then(this.props.history.push(`/clients/${clientId}`));
+    TattooApiService.postTattoo(newTattoo).then(
+      this.props.history.push(`/clients/${clientId}`)
+    );
   };
 
   render() {
@@ -51,9 +47,8 @@ export default class TattooForm extends Component {
     const { allClients = [] } = this.context;
     let clientDropDown;
 
-    // console.log(this.context);
     if (allClients === undefined) {
-      // console.log("loading");
+      // loading Future Feature will show loading animation;
     } else {
       clientDropDown = allClients.map(client => (
         <option key={client.id} value={client.id}>
@@ -70,12 +65,6 @@ export default class TattooForm extends Component {
             <option value="">Select a Client...</option>
             {clientDropDown}
           </select>
-
-          {/* <Input
-            required
-            name="client_name"
-            id="TattooForm_client_name"
-          ></Input> */}
         </div>
         <div className="tattoo_title">
           <label htmlFor="TattooForm_title">Title For Tattoo</label>

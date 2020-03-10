@@ -1,24 +1,17 @@
 .Header {
   height: 100px;
-  /* display: flex; */
-  /* justify-content: space-between;
-  align-items: baseline; */
   text-align: center;
   background-image: linear-gradient(black, #212121);
 }
 .Header h1 {
   margin: 0;
-  /* padding-left: 100px; */
   padding-top: 15px;
   text-align: center;
 }
+
 .Header_loggedIn {
   display: inline-flex;
 }
-/* #app-name {
-  margin: auto;
-  text-align: center;
-} */
 
 .Header h1 a {
   text-decoration: none;
@@ -41,6 +34,7 @@
 .Header_loggedIn {
   padding-top: 10px;
 }
+
 @media screen and (min-width: 680px) {
   .Header {
     display: flex;

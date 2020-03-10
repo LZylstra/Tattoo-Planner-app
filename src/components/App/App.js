@@ -15,7 +15,6 @@ import ClientForm from "../../components/ClientForm/ClientForm";
 import TattooForm from "../TattooForm/TattooForm";
 import Login from "../../routes/Login/Login";
 import Registration from "../../routes/Registration/Registration";
-// import { HeaderProvider } from "../../contexts/HeaderContext";
 import "./App.css";
 
 class App extends Component {
@@ -40,10 +39,6 @@ class App extends Component {
   };
 
   render() {
-    // const value = {
-    //   isLoggedIn: this.state.isLoggedIn
-    // };
-    // console.log(this.state.isLoggedIn);
     return (
       <main className="App">
         <div className="App">
@@ -63,12 +58,6 @@ class App extends Component {
                 component={Login}
                 updateLogin={this.updateLogin}
               />
-              {/* <PublicOnlyRoute
-                path={"/login"}
-                render={props => (
-                  <Login {...props} updateLogin={this.updateLogin} />
-                )}
-              /> */}
               <PublicOnlyRoute
                 exact
                 path={"/register"}

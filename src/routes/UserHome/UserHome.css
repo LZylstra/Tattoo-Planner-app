@@ -45,6 +45,7 @@
 .icon-row {
   text-align: center;
 }
+
 /* Calendar Styling */
 .calendar {
   width: 80%;
@@ -111,10 +112,8 @@
   margin: auto;
   top: 15%;
   max-width: 90%;
-  /* z-index: 5000; */
   background-color: black;
   outline: transparent;
-  /* opacity: 100; */
 }
 .Modal select {
   padding: 5px;
@@ -142,21 +141,6 @@
   right: 0;
   bottom: 0;
 }
-
-/* .react-dropdown-style {
-  padding: 0;
-  margin: 0; */
-/* color: black; */
-/* }
-.css-yk16xz-control {
-  margin: 0;
-  padding: 0;
-}
-.css-1hwfws3 {
-  margin: 0;
-  padding: 0; */
-/* width: 200px;
-  height: 100px; */
 
 @media screen and (min-width: 450px) {
   .calendar-section img {
@@ -190,8 +174,4 @@
     flex-wrap: nowrap;
     width: 100%;
   }
-}
-
-@media screen and (min-width: 900px) {
-  /* set the event section to go to the side when the screen is big enough */
 }

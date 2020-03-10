@@ -16,7 +16,6 @@ export class ClientListProvider extends Component {
   };
 
   setClientList = clientList => {
-    // console.log({ clientList });
     this.setState({ clientList });
   };
 

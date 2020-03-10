@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import financialIcon from "../../img/financial-icon.png";
-// import clientIcon from "../../img/client-icon.png";
-// import tattooIcon from "../../img/tattoo-icon.png";
-//import calendarIcon from "../../img/calendar-icon.png";
 import TokenService from "../../services/token-service";
 import HeaderContext from "../../contexts/HeaderContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +10,7 @@ export default class Header extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false //this.props.isLoggedIn
+      isLoggedIn: false
     };
   }
 
@@ -24,40 +20,28 @@ export default class Header extends Component {
     TokenService.clearAuthToken();
     TokenService.clearUser();
     this.updateLoggedIn(false);
-    // this.props.updateLogin(false);
-    // this.context.clearLoggedIn();
-    // this.props.updateLogin(false);
-    //this.setState({ isLoggedIn: false });
   };
-  // handleLoginClick = () => {
-  //   console.log("handle loginclick");
-  //   this.setState({ isLoggedIn: true });
-  // };
+
   updateLoggedIn = LoggedIn => {
     this.setState({ isLoggedIn: LoggedIn });
   };
 
   renderLogoutLink() {
-    // console.log("render logged in");
     return (
       <div className="Header_logged-in">
         <Link className="menu-icon" to="/clients">
-          {/* <img src={clientIcon} alt="clients" width="40" /> */}
           Clients
           <FontAwesomeIcon icon="caret-down" />
         </Link>
         <Link className="menu-icon" to="/ledger">
-          {/* <img src={financialIcon} alt="ledger" width="40" /> */}
           Ledger
           <FontAwesomeIcon icon="caret-down" />
         </Link>
         <Link className="menu-icon" to="/tattoos">
-          {/* <img src={tattooIcon} alt="tattoos" width="40" /> */}
           Tattoos
           <FontAwesomeIcon icon="caret-down" />
         </Link>
         <Link className="menu-icon" to="/home">
-          {/* <img src={calendarIcon} alt="tattoos" width="40" /> */}
           Calendar
           <FontAwesomeIcon icon="caret-down" />
         </Link>
@@ -70,8 +54,6 @@ export default class Header extends Component {
   }
 
   renderLoginLink() {
-    // console.log(" render logged out");
-
     return (
       <div className="Header_not-logged-in">
         <Link className="menu-item" to="/register">
@@ -95,8 +77,6 @@ export default class Header extends Component {
   }
 
   render() {
-    //  let { isLoggedIn } = this.state;
-    //console.log(isLoggedIn);
     return (
       <nav className="Header">
         <h1>
@@ -108,7 +88,6 @@ export default class Header extends Component {
         {this.checkLoggedIn()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}
-        {/* {isLoggedIn ? this.renderLogoutLink() : this.renderLoginLink()} */}
       </nav>
     );
   }

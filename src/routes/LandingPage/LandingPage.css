@@ -18,11 +18,11 @@
   border: 5px ridge white;
   box-shadow: 10px 10px 20px black;
 }
-#demo_pic::after {
-}
+
 #mobile_pic {
   display: none;
 }
+
 /* unvisited link */
 a:link {
   color: #14ffec;

@@ -51,63 +51,6 @@
   text-align: center;
 }
 
-.rate-area-t {
-  display: inline-block;
-  padding: 0;
-  border-style: none;
-  width: 250px;
-  margin-left: 8%;
-}
-
-.rate-area-t:not(:checked) > input {
-  position: absolute;
-  top: -9999px;
-  clip: rect(0, 0, 0, 0);
-}
-
-.rate-area-t:not(:checked) > label {
-  float: right;
-  width: 1.2em;
-  padding: 0 0.1em;
-  overflow: hidden;
-  white-space: nowrap;
-  cursor: pointer;
-  font-size: 200%;
-  line-height: 1.2;
-  color: lightgrey;
-  text-shadow: 1px 1px #bbb;
-}
-
-.rate-area-t:not(:checked) > label:before {
-  content: " ❤ ";
-}
-
-.rate-area-t > input:checked ~ label {
-  color: #14ffec;
-  text-shadow: 1px 1px #0d7377;
-  font-size: 200% !important;
-}
-
-.rate-area-t:not(:checked) > label:hover,
-.rate-area-t:not(:checked) > label:hover ~ label {
-  color: #14ffec;
-}
-
-.rate-area-t > input:checked + label:hover,
-.rate-area-t > input:checked + label:hover ~ label,
-.rate-area-t > input:checked ~ label:hover,
-.rate-area-t > input:checked ~ label:hover ~ label,
-.rate-area-t > label:hover ~ input:checked ~ label {
-  color: #14ffec;
-  text-shadow: 1px 1px #0d7377;
-}
-
-.rate-area-t > label:active {
-  position: relative;
-  top: 2px;
-  left: 2px;
-}
-
 @media screen and (min-width: 600px) {
   .ClientHeartRating {
     margin-right: 42%;

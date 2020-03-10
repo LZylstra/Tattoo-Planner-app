@@ -6,7 +6,7 @@ import financialIcon from "../../img/financial-icon.png";
 import clientIcon from "../../img/client-icon.png";
 import tattooIcon from "../../img/tattoo-icon.png";
 import calendarIcon from "../../img/calendar-icon.png";
-import coverImg from "../../img/cover-img2.png";
+import coverImg from "../../img/cover-img.png";
 
 class LandingPage extends Component {
   render() {

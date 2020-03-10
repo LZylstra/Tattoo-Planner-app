@@ -4,7 +4,6 @@ import config from "../config";
 const ClientApiService = {
   getClients() {
     let user = TokenService.getUser();
-    // console.log(user);
     return fetch(`${config.API_ENDPOINT}/clients/artist/${user}`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`
@@ -43,7 +42,6 @@ const ClientApiService = {
   },
   postClient(newClient) {
     const { full_name, phone, email, client_rating, artist } = newClient;
-    //console.log(artist);
     return fetch(`${config.API_ENDPOINT}/clients`, {
       method: "POST",
       headers: {

@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import OptionsHeader from "../../components/OptionsHeader/OptionsHeader";
 import Row from "../../components/Row/Row";
 import ClientListContext from "../../contexts/ClientListContext";
-//import AllContext from "../../contexts/AllContext";
 import ClientApiService from "../../services/client-api-service";
 import "./ClientList.css";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import TokenService from "../../services/token-service";
 
 class ClientList extends Component {
   static contextType = ClientListContext;
 
   componentDidMount() {
-    //  let user = TokenService.getUser();
-    //  console.log(user);
     this.context.clearError();
     ClientApiService.getClients()
       .then(this.context.setClientList)
@@ -23,7 +19,6 @@ class ClientList extends Component {
   }
   renderClients() {
     const { clientList = [] } = this.context;
-    // console.log(this.context);
     return clientList.map(client => <Row key={client.id} client={client} />);
   }
 
@@ -37,30 +32,7 @@ class ClientList extends Component {
         ) : (
           this.renderClients()
         )}
-        {/* <Link to="/client" className="row-link">
-          <Row
-            client="Sarah Smith"
-            tattoo="Butterfly"
-            label="planning"
-            date="02/14/20"
-          />
-        </Link>
-        <Link to="/client" className="row-link">
-          <Row
-            client="Gabriel Bellamy"
-            tattoo="Dragon"
-            label="session scheduled"
-            date="03/01/20"
-          />
-        </Link>
-        <Link to="/client" className="row-link">
-          <Row
-            client="Janice Bigby"
-            tattoo="Dog Portrait"
-            label="session scheduled"
-            date="02/23/20"
-          />
-        </Link> */}
+
         <div className="ClientList_button-container">
           <CircleButton
             tag={Link}

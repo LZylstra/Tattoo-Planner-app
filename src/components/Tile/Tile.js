@@ -20,7 +20,6 @@ class Tile extends Component {
   handleClickDeleteTattoo = e => {
     const { history } = this.props;
     const tattooId = this.props.tattoo.id;
-    // console.log(tattooId);
     e.preventDefault();
     TattooApiService.deleteTattoo(tattooId);
 
@@ -44,8 +43,9 @@ class Tile extends Component {
             <FontAwesomeIcon icon="trash-alt" />{" "}
           </button>
           <div className="inner">
-            {/* <img src="https://via.placeholder.com/250x150" alt="preview" /> */}
-            <img id="ref-img" src={this.props.img} alt="preview" />
+            <img src="https://via.placeholder.com/250x150" alt="preview" />
+            {/* Future Feature will show reference images
+            <img id="ref-img" src={this.props.img} alt="preview" /> */}
             <h4>{this.props.line1}</h4>
           </div>
         </div>

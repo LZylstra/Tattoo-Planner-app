@@ -16,15 +16,12 @@ class Row extends Component {
     const { history } = this.props;
     const clientId = this.props.client.id;
     e.preventDefault();
-    // console.log(clientId);
 
     ClientApiService.deleteClient(clientId);
     history.go(0);
   };
   render() {
     const { client } = this.props;
-    //console.log(client);
-    // console.log(client.id);
     return (
       <div className="row">
         <div className="inner-row">
@@ -41,10 +38,10 @@ class Row extends Component {
               {" "}
               <h3 className="row-text-item">{client.full_name}</h3>
               <p>{client.phone}</p>
-              {/* <p className="row-text-item">{props.tattoo}</p> */}
             </div>
           </Link>
-          {/* <div className="date-box">
+          {/* Future Feature, will show most current event date
+          <div className="date-box">
             <p className="row-text-item">{props.label}</p>
             <p className="date">{props.date}</p>
           </div> */}

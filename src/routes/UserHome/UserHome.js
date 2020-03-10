@@ -6,7 +6,6 @@ import tattooIcon from "../../img/tattoo-icon.png";
 import EventApiService from "../../services/event-api-service";
 import EventContext from "../../contexts/EventContext";
 import ClientApiService from "../../services/client-api-service";
-//import calendarPlaceholder from "../../img/calendar-placeholder.png";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -15,24 +14,20 @@ import listPlugin from "@fullcalendar/list";
 import { Link, withRouter } from "react-router-dom";
 import { Button, Input, Textarea } from "../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import moment from "moment";
 import Modal from "react-modal";
-//import Select from "react-select";
 import "./UserHome.css";
 
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-//import { EventApi } from "@fullcalendar/core";
-//import { Calendar } from "@fullcalendar/core";
-Modal.setAppElement(document.getElementById("root"));
+
+Modal.setAppElement(document.getElementById("root")); // Make Modal accessible
 
 class UserHome extends Component {
   calendarComponentRef = React.createRef();
   constructor() {
     super();
     this.state = {
-      //error: null,
       calendarWeekends: true,
       view: null,
       event: null,
@@ -52,7 +47,6 @@ class UserHome extends Component {
     this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
     this.handleDateClick = this.handleDateClick.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -61,9 +55,11 @@ class UserHome extends Component {
   setEventTitle(title) {
     this.setState({ eventTitle: title });
   }
+
   setClientId(id) {
     this.setState({ clientId: id });
   }
+
   setTattooList(tattoos) {
     this.setState({ tattooList: tattoos });
   }
@@ -71,13 +67,9 @@ class UserHome extends Component {
   setDateClicked(date) {
     this.setState({ dateClicked: date });
   }
+
   openModal() {
     this.setState({ modalIsOpen: true });
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    //  this.subtitle.style.color = "#f00";
   }
 
   closeModal() {
@@ -86,14 +78,13 @@ class UserHome extends Component {
   }
 
   saveEvents(event) {
-    // const newList = this.modifyEventList(event);
     this.setState({ eventList: event });
-    // console.log(`goes here ${this.state.calendarEvents}`);
   }
 
   setEvent = event => {
     this.setState({ event: event });
   };
+
   componentDidMount() {
     this.context.clearError();
     EventApiService.getEvents()
@@ -120,8 +111,6 @@ class UserHome extends Component {
   handleDeleteEvent = e => {
     e.preventDefault();
     let eventId = this.state.event.id;
-    // console.log("delete");
-    //console.log(eventId);
 
     EventApiService.deleteEvent(eventId);
 
@@ -132,8 +121,6 @@ class UserHome extends Component {
   handleDateClick = arg => {
     this.setDateClicked(arg.dateStr);
     this.setView("add");
-    //console.log(this.state.dateClicked);
-
     this.openModal();
   };
 
@@ -160,7 +147,6 @@ class UserHome extends Component {
     e.preventDefault();
     const clientId = e.target["client-id"].value;
     const tattooId = e.target["tattoo-id"].value;
-    // console.log(tattooId);
     this.setClientId(clientId);
 
     let date = new Date(this.state.dateClicked);
@@ -178,31 +164,28 @@ class UserHome extends Component {
       description: e.target["event_desc-add"].value,
       eventdate: date,
       start_time: e.target["event_start-add"].value,
-      // end_time,
+      // end_time, Future Feature, input for end date
       in_person: true,
       curr_status: "New",
       all_day: true,
       tattoo: tattooId
     };
-    //  console.log(newEvent);
 
     EventApiService.postEvent(newEvent)
       .then(this.context.addEvent)
-      .then(event => {
+      .then(() => {
         let eventList = this.context.eventList;
         this.saveEvents(this.modifyEventList(eventList));
-        // console.log(this.state.eventList);
       })
       .then(this.closeModal());
   };
 
   renderAddEvent() {
-    const { error } = this.context;
     const { clientList = [] } = this.context;
-    //  console.log(clientList);
+
     let clientDropDown;
     if (clientList === undefined) {
-      console.log("loading");
+      //"loading" Future feature, loading animation
     } else {
       clientDropDown = clientList.map(client => (
         <option key={client.id} value={client.id}>
@@ -260,14 +243,10 @@ class UserHome extends Component {
 
   renderViewEventDetails() {
     let clickedEvent = this.state.event;
-    // console.log(clickedEvent);
-    //console.log(this.state.eventId);
+
     if (clickedEvent === null) {
-      console.log("loading");
+      //"loading" Future feature, loading animation
     } else {
-      //this.setEventId(clickedEvent.id);
-      // console.log(this.state.eventId);
-      //this.context.setEvent(clickedEvent);
       return (
         <div className="event-details">
           <Button className="close-btn" onClick={this.closeModal}>
@@ -284,6 +263,7 @@ class UserHome extends Component {
     }
   }
 
+  // Modify event list to work with full calendar's requirements
   modifyEventList(oldList) {
     let newList = [];
     for (let i = 0; i < oldList.length; i++) {
@@ -291,10 +271,8 @@ class UserHome extends Component {
         title: oldList[i].title,
         start: oldList[i].eventdate
       };
-
       newList.push(newObj);
     }
-
     return newList;
   }
 
@@ -307,15 +285,11 @@ class UserHome extends Component {
 
     let clickedEventTitle = this.state.eventTitle;
     let clickedEvent;
-    // console.log(this.state.event);
-    // if (eventList === undefined) {
-    //   console.log("loading");
-    // } else {
+
     for (let i = 0; i < eventList.length; i++) {
       if (eventList[i].title === clickedEventTitle) {
         clickedEvent = eventList[i];
         this.setEvent(clickedEvent);
-
         break;
       }
     }
@@ -351,7 +325,7 @@ class UserHome extends Component {
               dateClick={this.handleDateClick}
               selectable={true}
               eventClick={this.handleEventClick}
-              //editable={true}
+              //editable={true} Future feature, make events draggable
               eventLimit={true} // when too many events in a day, show the popover
               selectMirror={true}
               unselectAuto={true}
@@ -363,7 +337,6 @@ class UserHome extends Component {
                 isOpen={this.state.modalIsOpen}
                 onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
-                //style={customStyles}
                 contentLabel="Add Event Modal"
                 className="Modal"
                 overlayClassName="Overlay"
