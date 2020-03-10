@@ -1,5 +1,4 @@
 import config from "../config";
-import AuthApiService from "./auth-api-service";
 
 const TokenService = {
   saveAuthToken(token) {
