@@ -13,9 +13,9 @@ class Row extends Component {
     }
   };
   handleClickDeleteClient = e => {
+    e.preventDefault();
     const { history } = this.props;
     const clientId = this.props.client.id;
-    e.preventDefault();
 
     ClientApiService.deleteClient(clientId);
     history.go(0);
