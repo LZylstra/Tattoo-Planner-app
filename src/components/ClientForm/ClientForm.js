@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Input } from "../../utils/utils";
-import ClientContext from "../../contexts/ClientContext";
+import ClientListContext from "../../contexts/ClientListContext";
 import ClientApiService from "../../services/client-api-service";
 import TokenService from "../../services/token-service";
 import "./ClientForm.css";
@@ -16,7 +16,7 @@ export default class ClientForm extends Component {
   };
   state = { error: null };
 
-  static contextType = ClientContext;
+  static contextType = ClientListContext;
 
   handleSubmitClient = ev => {
     ev.preventDefault();
@@ -43,6 +43,7 @@ export default class ClientForm extends Component {
     };
 
     ClientApiService.postClient(newClient)
+      // .then(this.context.addClient())
       .then(this.props.history.push(`/clients`))
       .catch(res => {
         this.setState({ error: res.error });

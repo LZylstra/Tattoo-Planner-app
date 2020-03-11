@@ -27,6 +27,9 @@ export class ClientListProvider extends Component {
   clearError = () => {
     this.setState({ error: null });
   };
+  addClient = client => {
+    this.setClientList([...this.state.ClientList, client]);
+  };
 
   render() {
     const value = {
@@ -34,7 +37,8 @@ export class ClientListProvider extends Component {
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
-      setClientList: this.setClientList
+      setClientList: this.setClientList,
+      addClient: this.addClient
     };
     return (
       <ClientListContext.Provider value={value}>
