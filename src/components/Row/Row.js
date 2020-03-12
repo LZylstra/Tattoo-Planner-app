@@ -22,9 +22,11 @@ class Row extends Component {
     const { history } = this.props;
     const clientId = this.props.client.id;
 
-    ClientApiService.deleteClient(clientId);
+    ClientApiService.deleteClient(clientId).then(() => {
+      this.context.clearClient();
+      history.go(0);
+    });
 
-    this.context.clearClient();
     //this.props.history.push("/clients");
     //history.go();
     // this.props.onDeleteSucess();
