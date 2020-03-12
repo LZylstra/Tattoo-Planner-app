@@ -112,10 +112,10 @@ class UserHome extends Component {
     e.preventDefault();
     let eventId = this.state.event.id;
 
-    EventApiService.deleteEvent(eventId);
-
-    this.closeModal();
-    this.props.history.go(0);
+    EventApiService.deleteEvent(eventId).then(() => {
+      this.closeModal();
+      this.props.history.go(0);
+    });
   };
 
   handleDateClick = arg => {

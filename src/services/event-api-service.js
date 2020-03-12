@@ -65,7 +65,7 @@ const EventApiService = {
     });
   },
   deleteEvent(eventId) {
-    fetch(`${config.API_ENDPOINT}/events/${eventId}`, {
+    return fetch(`${config.API_ENDPOINT}/events/${eventId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

@@ -22,11 +22,11 @@ class Tile extends Component {
     const { history } = this.props;
     const tattooId = this.props.tattoo.id;
 
-    TattooApiService.deleteTattoo(tattooId);
-
-    this.context.clearTattoos();
-    //refreshes the whole page
-    // history.go();
+    TattooApiService.deleteTattoo(tattooId).then(() => {
+      this.context.clearTattoos();
+      //refreshes the whole page
+      history.go(0);
+    });
   };
   render() {
     const { tattoo } = this.props;

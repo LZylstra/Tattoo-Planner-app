@@ -86,7 +86,7 @@ const TattooApiService = {
     });
   },
   deleteTattoo(tattooId) {
-    fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}`, {
+    return fetch(`${config.API_ENDPOINT}/tattoos/${tattooId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
