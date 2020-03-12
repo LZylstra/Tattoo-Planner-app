@@ -26,7 +26,7 @@ class Tile extends Component {
 
     this.context.clearTattoos();
     //refreshes the whole page
-    history.go();
+    // history.go();
   };
   render() {
     const { tattoo } = this.props;
