@@ -43,8 +43,10 @@ export default class ClientForm extends Component {
     };
 
     ClientApiService.postClient(newClient)
-      // .then(this.context.addClient())
-      .then(this.props.history.push(`/clients`))
+      .then(() => {
+        this.props.history.push(`/clients`);
+        this.history.go(0);
+      })
       .catch(res => {
         this.setState({ error: res.error });
       });
